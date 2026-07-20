@@ -10,7 +10,7 @@ export const homepage = {
     // the title tag, not copied — humans see this one, so spend the extra
     // words on a benefit, differentiator, or social proof.
     // e.g. "[City]'s Highest-Rated Tree Removal — 300+ Five-Star Reviews, Licensed & Insured"
-    h1: "Pasadena Tree Removal by an ISA Certified Arborist, Rated 5.0 Stars on Google",
+    h1: "Pasadena Tree Services by an ISA Certified Arborist With 30 Years of Experience",
 
     // Speaks to the visitor's desired OUTCOME and works in core services.
     subheadline:
