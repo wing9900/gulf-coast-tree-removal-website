@@ -479,8 +479,20 @@ a.proof-band__badge.proof-band__badge--img:hover {
   .grid--4 > .card { height: 100%; }             /* equal card heights */
   .intro-split { display: grid; grid-template-columns: 55fr 45fr; gap: 3rem; align-items: center; }
   .intro-split__media { display: block; width: 100%; height: auto; }
+
+  /* Header at desktop: logo left, nav centered, CTA pair far right with the
+     phone outermost. DOM order (brand, actions, nav) is untouched; flexbox
+     order does the visual move. Nav gap tightens 1024-1280 to avoid crowding. */
+  .site-header__brand { order: 0; }
+  .site-nav { order: 1; margin-inline: auto; }
+  .site-nav ul { gap: 1.1rem; }
+  .site-header__actions { order: 2; }
   .site-footer__grid { grid-template-columns: 2fr 1fr 1fr; }
   .split { grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
+}
+
+@media (min-width: 80rem) {
+  .site-nav ul { gap: 1.5rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
