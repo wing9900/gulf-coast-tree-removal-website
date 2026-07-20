@@ -1,0 +1,47 @@
+---
+/**
+ * MAP + NAP, Rule 12 consistency signals #3, #6, #7 in one section:
+ * Google Maps embed of the GBP location, address + phone matching the
+ * GBP character-for-character (guaranteed: both render from config).
+ * FILL-IN STEP: paste the GBP "Share → Embed a map" iframe src into
+ * business.ts → gbp.mapsEmbedUrl.
+ */
+import { business as b, telHref, cityState } from '../config/business';
+
+const dayLabel = (days: readonly string[]) =>
+  days.length > 1 ? `${days[0]}–${days[days.length - 1]}` : days[0];
+---
+
+<section class="section">
+  <div class="container split">
+    <div>
+      <h2>Visit or Call Us in {cityState}</h2>
+      <address class="nap-block">
+        <strong>{b.name}</strong><br />
+        {b.address.street}<br />
+        {b.address.city}, {b.address.stateAbbr} {b.address.zip}<br />
+        <a href={telHref}>{b.phoneDisplay}</a>
+      </address>
+      <ul class="hours-list">
+        {b.hours.map((h) => (
+          <li><span>{dayLabel(h.days)}</span><span>{h.opens}–{h.closes}</span></li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      {b.gbp.mapsEmbedUrl ? (
+        <iframe
+          class="map-embed"
+          src={b.gbp.mapsEmbedUrl}
+          title={`Map showing the location of ${b.name} in ${cityState}`}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      ) : (
+        <div class="map-embed gbp-embed-placeholder">
+          Google Maps embed of the GBP pin, set gbp.mapsEmbedUrl in business.ts
+        </div>
+      )}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,48 @@
+---
+/**
+ * HEADER — phone number is tap-to-call and visible from the first pixel
+ * (Rule 21). Nav is CSS-only (checkbox toggle), zero JavaScript; all nav
+ * links exist in the HTML for crawlers regardless of toggle state.
+ * Remember: nav links are for USERS — authority flows through the
+ * editorial links in page content (Rule 16), not this menu.
+ */
+import { getCollection } from 'astro:content';
+import { business as b, telHref } from '../config/business';
+
+const hasAreas = (await getCollection('locations')).length > 0;
+---
+
+<header class="site-header">
+  <div class="container">
+    <div class="site-header__bar">
+      <a class="site-header__brand" href="/" aria-label={`${b.name}, back to homepage`}>
+        <img class="site-header__logo" src="/images/gulf-coast-tree-removal-logo.webp" alt="" width="316" height="317" />
+        <span class="site-header__wordmark">
+          {(b.brandLockup ?? [b.name]).map((line) => <span>{line}</span>)}
+        </span>
+      </a>
+      <div class="site-header__actions">
+        <a class="site-header__estimate" href="/contact/">Free Estimate</a>
+        <a class="site-header__phone" href={telHref} aria-label={`Call ${b.name} at ${b.phoneDisplay}`}>
+          <span class="site-header__phone-short">Call</span>
+          <span class="site-header__phone-full">{b.phoneDisplay}</span>
+        </a>
+      </div>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu" />
+      <label for="nav-toggle" class="nav-toggle-label"><span class="nav-icon nav-icon--open" aria-hidden="true">☰</span><span class="nav-icon nav-icon--close" aria-hidden="true">✕</span> Menu</label>
+      <label for="nav-toggle" class="nav-scrim" aria-hidden="true"></label>
+
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/services/">Services</a></li>
+          {hasAreas && <li><a href="/locations/">Areas We Serve</a></li>}
+          <li><a href="/projects/">Recent Work</a></li>
+          <li><a href="/testimonials/">Reviews</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

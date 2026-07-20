@@ -1,0 +1,51 @@
+---
+/**
+ * CONTACT PAGE, phone-first (Rule 21: primary CTA = fastest path to a
+ * call). Form has the MINIMUM possible fields (Rule 13) and is a
+ * placeholder shell: wire the action/embed to the GHL form + pipeline
+ * per business at fill-in time. Quote submissions auto-forward per the
+ * lead-routing setup.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MapNAP from '../components/MapNAP.astro';
+import { business as b, cityState, telHref } from '../config/business';
+
+const title = `Contact ${b.name} | ${b.primaryCategory} in ${cityState}`;
+const description = `Call ${b.name} at ${b.phoneDisplay} or send a quick request for fast ${b.primaryCategory.toLowerCase()} help in ${cityState}. [Tighten to 150–160 chars per business.]`;
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="hero">
+    <div class="container">
+      <h1>Get a Fast, Free Estimate in {b.address.city}</h1>
+      <p class="hero__sub">The quickest way to reach us is a call or text. You'll talk to a real person who can schedule you today.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href={telHref}>Call {b.phoneDisplay}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div>
+        <h2>Prefer to Send Details?</h2>
+        <!-- ═══ GHL FORM EMBED / ACTION GOES HERE ═══
+             Keep fields to the minimum: name, phone, short message.
+             Every extra field costs conversions. -->
+        <div class="gbp-embed-placeholder">
+          Quote form embed (name · phone · message), wire to GHL at fill-in
+        </div>
+      </div>
+      <div>
+        <h2>What Happens Next</h2>
+        <p>
+          [FILL-IN: 2–3 sentences setting the expectation, how fast the
+          callback comes, what the estimate covers, that it's free. Truthful
+          specifics only.]
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <MapNAP />
+</BaseLayout>

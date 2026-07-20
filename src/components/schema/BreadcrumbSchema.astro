@@ -1,0 +1,24 @@
+---
+/**
+ * BreadcrumbList JSON-LD — mirrors the visible breadcrumb trail on
+ * category, service, and location pages. Tells Google and AI parsers
+ * exactly where a page sits in the site hierarchy and feeds the
+ * breadcrumb display in search results.
+ */
+interface Crumb { name: string; url: string }
+interface Props { items: Crumb[] }
+const { items } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((c, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: c.name,
+    item: new URL(c.url, Astro.site).href,
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

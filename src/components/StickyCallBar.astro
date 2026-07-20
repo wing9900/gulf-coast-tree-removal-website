@@ -1,0 +1,18 @@
+---
+/**
+ * FLOATING MOBILE CALL PILL — pinned near the bottom of the screen on
+ * mobile only (hidden >=48rem where the header carries the number).
+ * Implementation notes (hard-won):
+ *  - position: sticky, NOT fixed: in-flow, so none of the mobile-browser
+ *    fixed-element/toolbar bugs (stretched repaints, viewport math) apply.
+ *  - Must remain the LAST element inside <body> for sticky-to-page-end
+ *    behavior to work.
+ *  - Inset from all screen edges: the page background owns the screen
+ *    edge, so browser chrome can't color-sample or smear the amber.
+ */
+import { business as b, telHref } from '../config/business';
+---
+
+<a class="sticky-call" href={telHref}>
+  Call Now · {b.phoneDisplay}
+</a>

@@ -1,0 +1,16 @@
+{
+  "name": "seo-site-template",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Core 30 local SEO site framework — Astro static output for Cloudflare Pages. Duplicate per business, fill config + content.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.1.0",
+    "@astrojs/sitemap": "^3.2.0"
+  }
+}

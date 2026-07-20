@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# DUPLICATION STEP: replace with the real domain (must match astro.config.mjs `site`)
+Sitemap: https://www.gulfcoasttreeremoval.com/sitemap-index.xml

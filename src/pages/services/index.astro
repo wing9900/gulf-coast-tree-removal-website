@@ -1,0 +1,67 @@
+---
+/**
+ * SERVICES HUB — lists every category with its blurb + editorial link.
+ * A crawl-friendly index of the whole Core 30 tree one hop from the
+ * homepage.
+ */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTA from '../../components/CTA.astro';
+import { business as b, cityState, telHref } from '../../config/business';
+
+const categories = (await getCollection('categories')).sort(
+  (a, z) => a.data.order - z.data.order
+);
+const services = await getCollection('services');
+
+const title = `${b.primaryCategory} Services in ${cityState} | ${b.name}`;
+const description = `Every ${b.primaryCategory.toLowerCase()} service ${b.name} provides in ${cityState}. Browse by category and get a fast, free estimate.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="hero">
+    <div class="container">
+      <h1>Our {b.primaryCategory} Services in {b.address.city}</h1>
+      <p class="hero__sub">
+        Everything we do in {cityState}, organized by category. Every service links to a
+        detailed page covering what's included, what to expect, and what drives the price.
+      </p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href={telHref}>Call {b.phoneDisplay}</a>
+        <a class="btn btn--outline" href="/contact/">Get a Free Estimate</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {categories.map((cat) => {
+        const catServices = services
+          .filter((s) => s.data.category === cat.id)
+          .sort((a, z) => a.data.order - z.data.order);
+        return (
+          <article class="card card--flow">
+            <h2>{cat.data.title} in {b.address.city}</h2>
+            <p>
+              {cat.data.homepageBlurb}{' '}
+              <a href={`/services/${cat.id}/`}>See all {cat.data.title.toLowerCase()} services</a>.
+            </p>
+            {catServices.length > 0 && (
+              <p>
+                Includes:{' '}
+                {catServices.map((s, i) => (
+                  <>
+                    <a href={`/services/${cat.id}/${s.id}/`}>{s.data.title}</a>
+                    {i < catServices.length - 1 ? ' · ' : ''}
+                  </>
+                ))}
+              </p>
+            )}
+          </article>
+        );
+      })}
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

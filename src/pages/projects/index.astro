@@ -1,0 +1,78 @@
+---
+/**
+ * RECENT WORK — the gallery page, structured so it can never become the
+ * thin image-dump the rules ban (Rule 24: no lightbox-only galleries as
+ * functional content). Each project is a captioned block: real photos
+ * (Rule 26/29 requirements in the template) + service performed + area +
+ * an editorial link to the matching service page (Rule 16).
+ *
+ * Ships noindex while empty. FILL-IN: add 6+ projects from _TEMPLATE.md
+ * before launch, or remove "Recent Work" from the Header nav.
+ * Photos here are proof + conversion; the same photos also belong ON the
+ * relevant service pages, where they build entity relevance.
+ */
+import { getCollection, getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTA from '../../components/CTA.astro';
+import { business as b, cityState, telHref } from '../../config/business';
+
+const projects = (await getCollection('projects')).sort(
+  (a, z) => a.data.order - z.data.order
+);
+
+const rendered = await Promise.all(
+  projects.map(async (project) => {
+    const { Content } = await render(project);
+    const relatedService = await getEntry('services', project.data.service);
+    return { project, Content, relatedService };
+  })
+);
+
+const title = `Recent ${b.primaryCategory} Work in ${cityState} | ${b.name}`;
+const description = `Real, recent ${b.primaryCategory.toLowerCase()} projects completed by ${b.name} across ${cityState}: photos, locations, and what each job involved.`;
+---
+
+<BaseLayout title={title} description={description} noindex={projects.length === 0}>
+  <section class="hero">
+    <div class="container">
+      <h1>Recent {b.primaryCategory} Work Across {b.address.city}</h1>
+      <p class="hero__sub">
+        Real jobs, real photos. Here's what we've been doing around {cityState} lately.
+      </p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href={telHref}>Call {b.phoneDisplay}</a>
+        <a class="btn btn--outline" href="/contact/">Get a Free Estimate</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {rendered.length > 0 ? (
+        rendered.map(({ project, Content, relatedService }) => (
+          <article class="card card--flow">
+            <h2 class="card-title">{project.data.title}</h2>
+            <p>{project.data.description}</p>
+            <Content />
+            {relatedService && (
+              <p>
+                Need something similar? See our{' '}
+                <a href={`/services/${relatedService.data.category}/${relatedService.id}/`}>
+                  {relatedService.data.title.toLowerCase()} in {b.address.city}
+                </a>{' '}
+                page for what's included and what drives the price.
+              </p>
+            )}
+          </article>
+        ))
+      ) : (
+        <p>
+          <!-- Placeholder while collection is empty (page is noindexed) -->
+          Project write-ups with photos are added here as jobs are completed.
+        </p>
+      )}
+    </div>
+  </section>
+
+  <CTA heading={`Want Your Project Done Right in ${b.address.city}?`} />
+</BaseLayout>

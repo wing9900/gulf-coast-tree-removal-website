@@ -1,0 +1,49 @@
+---
+/**
+ * TESTIMONIALS PAGE, built for the machines (Rule 23).
+ * LLMs demonstrably cite a business's own testimonials page when
+ * recommending it. This page serves both audiences without faking
+ * anything: live GBP review embed (human trust) + the aggregate count
+ * and rating in plain crawlable HTML (machine trust) + AggregateRating
+ * schema (already emitted site-wide from LocalBusinessSchema).
+ * NEVER re-typed testimonial text on this page.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ReviewsEmbed from '../components/ReviewsEmbed.astro';
+import CTA from '../components/CTA.astro';
+import { business as b, cityState } from '../config/business';
+
+const hasRating = b.gbp.ratingValue > 0 && b.gbp.reviewCount > 0;
+const title = `${b.name} Reviews | ${b.primaryCategory} in ${cityState}`;
+const description = `Read verified Google reviews for ${b.name}, a ${b.primaryCategory.toLowerCase()} serving ${cityState}. See our live rating, review count, and what local customers say.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="hero">
+    <div class="container">
+      <h1>What {b.address.city} Says About {b.name}</h1>
+      {hasRating && (
+        <p class="hero__sub">
+          {b.name} holds a {b.gbp.ratingValue}-star average rating across {b.gbp.reviewCount}+
+          verified Google reviews from customers in {cityState}.
+        </p>
+      )}
+    </div>
+  </section>
+
+  <ReviewsEmbed heading={`Verified Google Reviews from ${b.address.city} Customers`} />
+
+  <section class="section">
+    <div class="container">
+      <h2>Why Reviews From Real {b.address.city} Customers Matter</h2>
+      <p>
+        [FILL-IN: 2–3 short paragraphs, second person, on how the business earns these
+        reviews, response times, guarantees, named credentials. Specifics beat
+        adjectives (Rule 22). Include an editorial link to the most important
+        category or service page.]
+      </p>
+    </div>
+  </section>
+
+  <CTA heading={`Join Our Happy Customers in ${b.address.city}`} />
+</BaseLayout>

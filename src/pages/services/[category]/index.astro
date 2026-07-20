@@ -1,0 +1,94 @@
+---
+/**
+ * CATEGORY PAGE (Rule 14) — one per GBP category.
+ * Target keyword: [category] + [city] → title tag + H1.
+ * Lists every service in the category: H3 + 50–100 words + an editorial
+ * (in-paragraph) link to the dedicated service page — 5–10 editorial
+ * links per category page is the expected shape.
+ */
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import FAQ from '../../../components/FAQ.astro';
+import ReviewsEmbed from '../../../components/ReviewsEmbed.astro';
+import CTA from '../../../components/CTA.astro';
+import MapNAP from '../../../components/MapNAP.astro';
+import BreadcrumbSchema from '../../../components/schema/BreadcrumbSchema.astro';
+import { business as b, cityState, telHref } from '../../../config/business';
+
+export async function getStaticPaths() {
+  const categories = await getCollection('categories');
+  return categories.map((category) => ({
+    params: { category: category.id },
+    props: { category },
+  }));
+}
+
+const { category } = Astro.props;
+const { Content } = await render(category);
+
+// Every service whose frontmatter `category` matches this page
+const services = (
+  await getCollection('services', ({ data }) => data.category === category.id)
+).sort((a, z) => a.data.order - z.data.order);
+
+// Rule 17: [category] + [city] front-loaded
+const title = `${category.data.title} in ${cityState} | ${b.name}`;
+const h1 = category.data.h1 ?? `${category.data.title} in ${b.address.city}`;
+---
+
+<BaseLayout title={title} description={category.data.metaDescription}>
+  <BreadcrumbSchema items={[
+    { name: 'Home', url: '/' },
+    { name: 'Services', url: '/services/' },
+    { name: category.data.title, url: `/services/${category.id}/` },
+  ]} />
+  <section class="hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li aria-current="page">{category.data.title}</li>
+        </ol>
+      </nav>
+      <h1>{h1}</h1>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href={telHref}>Call {b.phoneDisplay}</a>
+        <a class="btn btn--outline" href="/contact/">Get a Free Estimate</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category intro: markdown body of the category .md file.
+       Talks to the visitor, states why this business for this category,
+       names the city naturally (Rules 15, 21, 22). -->
+  <section class="section">
+    <div class="container">
+      <Content />
+    </div>
+  </section>
+
+  <!-- Service blocks: H3 + 50–100 word blurb + editorial link (Rule 14) -->
+  <section class="section section--alt">
+    <div class="container">
+      <h2>{category.data.title} Services We Provide in {b.address.city}</h2>
+      {services.map((svc) => (
+        <article class="card card--flow">
+          <h2 class="card-title">{svc.data.title} in {b.address.city}</h2>
+          <p>
+            {svc.data.categoryBlurb}{' '}
+            <a href={`/services/${category.id}/${svc.id}/`}>
+              Learn more about {svc.data.title.toLowerCase()} in {b.address.city}
+            </a>.
+          </p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <FAQ faqs={category.data.faqs} heading={`${category.data.title} Questions We Hear in ${b.address.city}`} />
+
+  <ReviewsEmbed />
+  <MapNAP />
+  <CTA heading={`Need ${category.data.title} in ${b.address.city}?`} />
+</BaseLayout>

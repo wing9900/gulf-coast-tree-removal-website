@@ -1,0 +1,98 @@
+---
+/**
+ * ABOUT PAGE — supporting trust content. Even here, open by talking to
+ * the visitor about what the business does FOR them; history appears
+ * only as brief supporting proof (Rule 22), never the opener.
+ * FILL-IN: real team photos with descriptive filenames + specific alt
+ * text (Rule 26). No stock, no AI-generated people (Rule 29).
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import MapNAP from '../components/MapNAP.astro';
+import { business as b, cityState } from '../config/business';
+
+const title = `About ${b.name} | ${b.primaryCategory} in ${cityState}`;
+const description = `Meet the ISA Certified Arborist behind ${b.name}: the credentials, guarantees, and Gulf Coast experience ${cityState} homeowners rely on.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="hero">
+    <div class="container">
+      <h1>The {b.address.city} Team Behind {b.name}</h1>
+      <p class="hero__sub">[One sentence about the outcome customers get and who delivers it.]</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Who You're Hiring</h2>
+      <p>
+        When a tree is leaning over your roof, the person you want deciding
+        how it comes down is a certified arborist, not the lowest bidder with
+        a ladder. Gulf Coast Tree Removal is owned and operated by Robert
+        Ebbecke, an ISA Certified Arborist (credential TX-5075A, verifiable
+        through the International Society of Arboriculture) with 30 years of
+        tree work on the Gulf Coast.
+      </p>
+      <p>
+        The promises are simple and they are on every invoice: free on-site
+        estimates, fully insured for your protection, free stump grinding
+        with every removal, a 10% senior discount, and no money due until the
+        job is finished and you are satisfied. You deal with the arborist
+        directly from the first call or text to the final cleanup.
+      </p>
+      <figure class="cert-figure">
+        <img
+          src="/images/isa-certified-arborist-certificate-tx-5075a.webp"
+          alt="ISA Certified Arborist certificate issued to Robert Ebbecke by the International Society of Arboriculture, credential number TX-5075A"
+          width="1200" height="934" loading="lazy" decoding="async"
+        />
+        <figcaption>The credential itself: ISA Certified Arborist, ANAB-accredited, credential number TX-5075A. Verify it anytime through the ISA registry.</figcaption>
+      </figure>
+      <p>
+        See the crews and equipment in action on the
+        <a href="/projects/">recent work page</a>, or start with the full list
+        of <a href="/services/">tree services for Pasadena and the surrounding
+        area</a>.
+      </p>
+
+      <div class="photo-grid photo-grid--about">
+        <figure>
+          <img
+            src="/images/tree-service-team-kubota-tractor-pasadena-tx.webp"
+            alt="Gulf Coast Tree Removal team member in front of a Kubota tractor loading a cedar log at the Pasadena, TX yard"
+            width="765" height="1020" loading="lazy" decoding="async"
+          />
+          <figcaption>Robert Ebbecke, owner and ISA Certified Arborist (TX-5075A).</figcaption> <!-- CONFIRM the person pictured is Robert before launch -->
+        </figure>
+        <figure>
+          <img
+            src="/images/tree-service-truck-chipper-fleet-pasadena-tx.webp"
+            alt="Gulf Coast Tree Removal forestry bucket truck and Bandit chipper rig lettered with 24-hour emergency disaster relief service"
+            width="1100" height="484" loading="lazy" decoding="async"
+          />
+          <figcaption>The rig: forestry bucket truck, chip box, and Bandit chipper, sized for Pasadena's biggest removals.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/bucket-truck-limb-removal-pasadena-tx.webp"
+            alt="Bucket truck operator cutting back a dead limb high above the tree canopy at sunrise in Pasadena, TX"
+            width="765" height="1020" loading="lazy" decoding="async"
+          />
+          <figcaption>First light in Pasadena. Crews start early so your yard is done by dinner.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/forestry-bucket-truck-boom-extended-pasadena-tx.webp"
+            alt="Gulf Coast Tree Removal forestry bucket truck with the boom fully extended into tall pines at the Pasadena, TX yard"
+            width="768" height="1020" loading="lazy" decoding="async"
+          />
+          <figcaption>Full boom extension reaches Pasadena's tallest pines without a crane rental.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <MapNAP />
+  <CTA />
+</BaseLayout>

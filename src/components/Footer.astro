@@ -1,0 +1,51 @@
+---
+/**
+ * FOOTER — NAP repeated from config (always consistent by construction),
+ * hours matching the GBP, quick links. Footer links don't pass authority
+ * (Rule 16) — they're user convenience only.
+ */
+import { business as b, cityState, telHref } from '../config/business';
+const year = new Date().getFullYear();
+
+const dayLabel = (days: readonly string[]) =>
+  days.length > 1 ? `${days[0].slice(0, 3)}–${days[days.length - 1].slice(0, 3)}` : days[0];
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div>
+        <img class="site-footer__logo" src="/images/gulf-coast-tree-removal-logo.webp" alt={`${b.name} logo`} width="316" height="317" loading="lazy" decoding="async" />
+        <h3>{b.name}</h3>
+        <address class="nap-block">
+          {b.address.street}<br />
+          {b.address.city}, {b.address.stateAbbr} {b.address.zip}<br />
+          <a href={telHref}>{b.phoneDisplay}</a>
+        </address>
+      </div>
+
+      <div>
+        <h3>Hours</h3>
+        <ul class="hours-list">
+          {b.hours.map((h) => (
+            <li><span>{dayLabel(h.days)}</span><span>{h.opens}–{h.closes}</span></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="/services/">All Services</a></li>
+          <li><a href="/testimonials/">Customer Reviews</a></li>
+          <li><a href="/about/">About Us</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__legal">
+      © {year} {b.name} · Serving {cityState} and surrounding areas
+    </div>
+  </div>
+</footer>

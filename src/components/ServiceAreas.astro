@@ -1,0 +1,33 @@
+---
+/**
+ * SERVICE AREAS STRIP — homepage band for genuinely multi-area
+ * businesses. Renders ONLY when town pages exist (kind: "town"), so a
+ * single-location build can never show a fake areas list (the Rule 13
+ * warning targets exactly that). Links every town page plus the hub;
+ * sits beside the map/NAP section.
+ */
+import { getCollection } from 'astro:content';
+import { business as b } from '../config/business';
+
+const towns = (await getCollection('locations', ({ data }) => data.kind === 'town')).sort(
+  (a, z) => a.data.order - z.data.order
+);
+---
+
+{towns.length > 0 && (
+  <section class="section section--alt">
+    <div class="container">
+      <p class="eyebrow">Service area</p>
+      <h2>Proudly Serving {b.address.city} and the Surrounding Region</h2>
+      <p class="areas-links">
+        {towns.map((t, i) => (
+          <><a href={`/locations/${t.id}/`}>{t.data.shortName ?? t.data.title}</a>{i < towns.length - 1 ? ' · ' : ''}</>
+        ))}
+      </p>
+      <p>
+        One crew standard, one phone number, everywhere we roll a truck. See every{' '}
+        <a href="/locations/">area we serve</a> for local details.
+      </p>
+    </div>
+  </section>
+)}

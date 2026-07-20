@@ -1,0 +1,99 @@
+---
+/**
+ * GEOGRAPHIC PAGES — two kinds, one template (Rule 31 + multi-area builds).
+ *
+ * kind "town" — for a business genuinely serving multiple towns from one
+ *   address. A mini-hub targeting [primary category] + [town]: title like
+ *   "Tree Service in Kilgore, TX", several relatedServices, genuinely
+ *   local body content with 3–5 editorial links woven in. Established
+ *   multi-area clients ship these AT LAUNCH — the topical-authority gate
+ *   protects brand-new sites; an aged GBP with reviews and links usually
+ *   already clears it (verify with a rank map, prioritize yellow zones).
+ *
+ * kind "landmark" — within-city expansion targeting
+ *   [service] + [landmark] + [city]. Built in batches of 10–20 against
+ *   rank-map zones sitting at positions 4–6. Landmarks must exist on
+ *   Google Maps — never invented.
+ *
+ * Both kinds: content must be GENUINELY local (housing stock and the
+ * service issues that follow, named nearby businesses, drive routes),
+ * plus one external validation link (Rule 45). The ~50-mile rule stands:
+ * pages can't rank the GBP in towns far outside its radius — that takes
+ * a second verified location, no content workaround.
+ */
+import { getCollection, getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BreadcrumbSchema from '../../components/schema/BreadcrumbSchema.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTA from '../../components/CTA.astro';
+import MapNAP from '../../components/MapNAP.astro';
+import { business as b, cityState, telHref } from '../../config/business';
+
+export async function getStaticPaths() {
+  const locations = await getCollection('locations');
+  return locations.map((location) => ({
+    params: { location: location.id },
+    props: { location },
+  }));
+}
+
+const { location } = Astro.props;
+const { Content } = await render(location);
+
+const related = (
+  await Promise.all(location.data.relatedServices.map((slug) => getEntry('services', slug)))
+).filter((svc) => svc !== undefined);
+
+const isTown = location.data.kind === 'town';
+// Town titles carry their own geo ("Tree Service in Kilgore, TX");
+// landmark titles get the home city appended per Rule 31.
+const title = isTown
+  ? `${location.data.title} | ${b.name}`
+  : `${location.data.title}, ${cityState} | ${b.name}`;
+const crumbName = location.data.shortName ?? location.data.title;
+---
+
+<BaseLayout title={title} description={location.data.metaDescription}>
+  <BreadcrumbSchema items={[
+    { name: 'Home', url: '/' },
+    { name: 'Areas We Serve', url: '/locations/' },
+    { name: crumbName, url: `/locations/${location.id}/` },
+  ]} />
+
+  <section class="hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/locations/">Areas We Serve</a></li>
+          <li aria-current="page">{crumbName}</li>
+        </ol>
+      </nav>
+      <h1>{location.data.title}</h1>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href={telHref}>Call {b.phoneDisplay}</a>
+        <a class="btn btn--outline" href="/contact/">Get a Free Estimate</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <Content />
+
+      {related.length > 0 && (
+        <p>
+          Ready to move forward? See exactly what's included on our{' '}
+          {related.map((svc, i) => (
+            <><a href={`/services/${svc.data.category}/${svc.id}/`}>{svc.data.title.toLowerCase()}</a>{i < related.length - 2 ? ', ' : i === related.length - 2 ? ' and ' : ''}</>
+          ))}
+          {related.length === 1 ? ' page' : ' pages'}, or call for a fast estimate.
+        </p>
+      )}
+    </div>
+  </section>
+
+  <FAQ faqs={location.data.faqs} />
+  <MapNAP />
+  <CTA />
+</BaseLayout>

@@ -1,0 +1,28 @@
+---
+/**
+ * Service JSON-LD (Rule 27) — one per service page. Links back to the
+ * site-wide LocalBusiness node via @id so Google/AI connect the
+ * [service entity] to the [business entity] to the [place entity].
+ */
+import { business as b } from '../../config/business';
+
+interface Props {
+  name: string;         // service title, e.g. "Stump Grinding"
+  description: string;  // the page's meta description works well here
+  url: string;          // absolute URL of the service page
+}
+const { name, description, url } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: name,
+  name: `${name} in ${b.address.city}, ${b.address.stateAbbr}`,
+  description,
+  url,
+  provider: { '@id': `${b.siteUrl}/#business` },
+  areaServed: b.serviceAreas.map((a) => ({ '@type': 'City', name: a })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

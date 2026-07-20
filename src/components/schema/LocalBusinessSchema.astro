@@ -1,0 +1,49 @@
+---
+/**
+ * LocalBusiness JSON-LD (Rule 27) — rendered in <head> on EVERY page.
+ * Built 100% from src/config/business.ts, so schema NAP can never
+ * disagree with on-page NAP. Uses the most specific subtype set in
+ * business.schemaType. Validate every build with Google's Rich
+ * Results Test — "No items detected" = failed build.
+ */
+import { business as b } from '../../config/business';
+
+const schema: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': b.schemaType,
+  '@id': `${b.siteUrl}/#business`,
+  name: b.name,
+  url: b.siteUrl,
+  telephone: b.phone,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: b.address.street,
+    addressLocality: b.address.city,
+    addressRegion: b.address.stateAbbr,
+    postalCode: b.address.zip,
+    addressCountry: b.address.country,
+  },
+  openingHoursSpecification: b.hours.map((h) => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: h.days,
+    opens: h.opens,
+    closes: h.closes,
+  })),
+  areaServed: b.serviceAreas.map((a) => ({ '@type': 'City', name: a })),
+};
+
+if (b.geo && (b.geo.lat !== 0 || b.geo.lng !== 0)) {
+  schema.geo = { '@type': 'GeoCoordinates', latitude: b.geo.lat, longitude: b.geo.lng };
+}
+if (b.gbp.ratingValue > 0 && b.gbp.reviewCount > 0) {
+  schema.aggregateRating = {
+    '@type': 'AggregateRating',
+    ratingValue: b.gbp.ratingValue,
+    reviewCount: b.gbp.reviewCount,
+  };
+}
+if (b.sameAs.length > 0) schema.sameAs = b.sameAs;
+if (b.gbp.profileUrl) schema.hasMap = b.gbp.profileUrl;
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

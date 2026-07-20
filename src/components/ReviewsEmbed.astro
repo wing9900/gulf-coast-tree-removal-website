@@ -1,0 +1,38 @@
+---
+/**
+ * REVIEWS, Rule 23: on-page reviews must be EMBEDDED LIVE from the GBP
+ * in recognizable Google formatting. Never re-typed testimonial text,
+ * never stock gray-avatar cards.
+ *
+ * FILL-IN STEP: drop the live GBP review embed (e.g. Elfsight/EmbedSocial
+ * Google Reviews widget, 5–6 reviews horizontal) into the marked slot.
+ * The aggregate line above it stays as plain crawlable HTML for
+ * Google + AI models regardless of what the widget renders.
+ */
+import { business as b } from '../config/business';
+
+interface Props { heading?: string }
+const { heading = `What Customers in ${b.address.city} Say` } = Astro.props;
+const hasRating = b.gbp.ratingValue > 0 && b.gbp.reviewCount > 0;
+---
+
+<section class="section section--alt">
+  <div class="container">
+    <h2>{heading}</h2>
+
+    {hasRating && (
+      <p class="rating-line">
+        Rated <strong>{b.gbp.ratingValue} ★</strong> across <strong>{b.gbp.reviewCount}+ Google reviews</strong>
+      </p>
+    )}
+
+    <!-- ═══ LIVE GBP REVIEW EMBED GOES HERE (replace this placeholder) ═══ -->
+    <div class="gbp-embed-placeholder">
+      Live Google Business Profile review embed, 5–6 reviews, horizontal layout
+    </div>
+
+    {b.gbp.profileUrl && (
+      <p><a href={b.gbp.profileUrl}>Read all of our reviews on Google →</a></p>
+    )}
+  </div>
+</section>

@@ -1,0 +1,62 @@
+---
+/**
+ * HERO — STATIC only (Rule 21: no animated/rotating heroes; they bounce).
+ * H1 + subheadline + primary CTA + tap-to-call phone are all visible
+ * without scrolling on a phone. The H1 is the largest text on the page
+ * (CSS guarantees it) — Google infers the primary heading from size.
+ *
+ * IMAGE FILL-IN STEP: swap the gradient for the single best real photo of
+ * the core offering (background-image or <img> with descriptive filename
+ * + specific alt text, compressed WebP — Rule 26). Never clickable
+ * unless labeled. No stock, no AI imagery for local proof (Rule 29).
+ */
+import { telHref, business as b } from '../config/business';
+
+interface HeroImage {
+  src: string;
+  srcset?: string;
+  mobileSrc?: string; // art-directed portrait crop for phones
+  alt: string;
+  width: number;
+  height: number;
+}
+interface Props {
+  eyebrow?: string;
+  h1: string;
+  subheadline: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  image?: HeroImage; // real job photo (Rule 21/26) — falls back to gradient when absent
+}
+const { eyebrow, h1, subheadline, ctaLabel = 'Get a Free Estimate', ctaHref = '/contact/', image } = Astro.props;
+---
+
+<section class={image ? 'hero hero--photo' : 'hero'}>
+  {image && (
+    <picture>
+      {image.mobileSrc && (
+        <source media="(max-width: 47.99rem)" srcset={image.mobileSrc} width="816" height="1020" />
+      )}
+      <img
+        class="hero__img"
+        src={image.src}
+        srcset={image.srcset}
+        sizes="100vw"
+        alt={image.alt}
+        width={image.width}
+        height={image.height}
+        fetchpriority="high"
+        decoding="async"
+      />
+    </picture>
+  )}
+  <div class="container">
+    {eyebrow && <p class="hero__eyebrow">{eyebrow}</p>}
+    <h1>{h1}</h1>
+    <p class="hero__sub">{subheadline}</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary" href={telHref}>Call {b.phoneDisplay}</a>
+      <a class="btn btn--outline" href={ctaHref}>{ctaLabel}</a>
+    </div>
+  </div>
+</section>

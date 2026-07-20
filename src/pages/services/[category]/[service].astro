@@ -1,0 +1,114 @@
+---
+/**
+ * SERVICE PAGE (Rule 15), one per GBP-listed service. The #1 local
+ * organic ranking factor is a dedicated, optimized page per service.
+ * Target keyword: [service] + [city] → title tag + H1.
+ * Emits Service schema + FAQPage schema (Rule 27). Ends with editorial
+ * links back to sibling services, the parent category, and the homepage
+ * so no page is an orphan and equity flows both ways (Rule 16).
+ */
+import { getCollection, getEntry, render } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ServiceSchema from '../../../components/schema/ServiceSchema.astro';
+import FAQ from '../../../components/FAQ.astro';
+import ReviewsEmbed from '../../../components/ReviewsEmbed.astro';
+import CTA from '../../../components/CTA.astro';
+import MapNAP from '../../../components/MapNAP.astro';
+import BreadcrumbSchema from '../../../components/schema/BreadcrumbSchema.astro';
+import { business as b, cityState, telHref } from '../../../config/business';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+  return services.map((service) => ({
+    params: { category: service.data.category, service: service.id },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const { Content } = await render(service);
+
+const category = await getEntry('categories', service.data.category);
+const siblings = (
+  await getCollection(
+    'services',
+    ({ data, id }) => data.category === service.data.category && id !== service.id
+  )
+).sort((a, z) => a.data.order - z.data.order);
+
+// Rule 17: [service] + [city] front-loaded
+const title = `${service.data.title} in ${cityState} | ${b.name}`;
+const h1 = service.data.h1 ?? `${service.data.title} in ${b.address.city}`;
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<BaseLayout title={title} description={service.data.metaDescription}>
+  <ServiceSchema name={service.data.title} description={service.data.metaDescription} url={pageUrl} />
+  <BreadcrumbSchema items={[
+    { name: 'Home', url: '/' },
+    { name: 'Services', url: '/services/' },
+    ...(category ? [{ name: category.data.title, url: `/services/${category.id}/` }] : []),
+    { name: service.data.title, url: `/services/${service.data.category}/${service.id}/` },
+  ]} />
+
+  <section class="hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/services/">Services</a></li>
+          {category && (
+            <li><a href={`/services/${category.id}/`}>{category.data.title}</a></li>
+          )}
+          <li aria-current="page">{service.data.title}</li>
+        </ol>
+      </nav>
+      <h1>{h1}</h1>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href={telHref}>Call {b.phoneDisplay}</a>
+        <a class="btn btn--outline" href="/contact/">Get a Free Estimate</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Deep service content: the markdown body. Specific to THIS service
+       in THIS city, why customers need it, what it includes, timeline,
+       what to expect, pricing factors. Question-based H2s with the direct
+       answer in the first sentence below (Rule 18/42, the shape AI
+       quotes). Include >=1 external validation link (Rule 45) and 3–5
+       editorial links to related pages (Rule 16). Never generic industry
+       filler. -->
+  <section class="section">
+    <div class="container">
+      <Content />
+    </div>
+  </section>
+
+  <FAQ faqs={service.data.faqs} heading={`${service.data.title} Questions from ${b.address.city} Customers`} />
+
+  <ReviewsEmbed />
+
+  <!-- Related editorial links: siblings + parent category + homepage,
+       written as prose, not a nav block (Rule 16, no orphans). -->
+  <section class="section">
+    <div class="container">
+      <h2>Related {category ? category.data.title : ''} Services in {b.address.city}</h2>
+      <p>
+        {siblings.length > 0 && (
+          <>Many {b.address.city} customers who need {service.data.title.toLowerCase()} also ask us about{' '}
+          {siblings.map((sib, i) => (
+            <><a href={`/services/${sib.data.category}/${sib.id}/`}>{sib.data.title.toLowerCase()}</a>{i < siblings.length - 2 ? ', ' : i === siblings.length - 2 ? ' and ' : '. '}</>
+          ))}</>
+        )}
+        {category && (
+          <>You can review everything we offer on our{' '}
+          <a href={`/services/${category.id}/`}>{category.data.title.toLowerCase()} services page</a>,{' '}</>
+        )}
+        or head back to our <a href="/">{b.primaryCategory.toLowerCase()} homepage for {b.address.city}</a> for the full picture.
+      </p>
+    </div>
+  </section>
+
+  <MapNAP />
+  <CTA heading={`Need ${service.data.title} in ${b.address.city}?`} />
+</BaseLayout>
