@@ -277,7 +277,15 @@ p:last-child { margin-bottom: 0; }
 .hero .breadcrumbs, .hero .breadcrumbs a { color: var(--c-accent-soft); }
 
 /* ── Social proof band — dark strip directly under the hero ── */
-.proof-band { background: var(--c-primary-dark); color: #fff; border-top: 3px solid var(--c-accent); }
+.proof-band {
+  background: var(--c-primary-dark); color: #fff; border-top: 3px solid var(--c-accent);
+  /* Seam guard: on high-DPR mobile, fractional-pixel rounding between this
+     band and the next section can let the cream body background show as a
+     thin strip. Diagnosis ruled out margin leaks (sections use padding;
+     no margins exist on the band's children), so this paints 1px of the
+     band's own color past its bottom edge with zero layout impact. */
+  box-shadow: 0 1px 0 0 var(--c-primary-dark);
+}
 .proof-band__inner {
   display: flex; flex-direction: column; align-items: center;
   gap: 0.8rem; padding-block: 1rem; text-align: center;
