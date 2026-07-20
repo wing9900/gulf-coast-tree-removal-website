@@ -453,9 +453,21 @@ a.proof-band__badge.proof-band__badge--img:hover {
    SCALE UP — desktop ≥64rem
    ════════════════════════════════════════════════════════════════════ */
 @media (min-width: 64rem) {
+  /* ── Desktop layout system (>=1024px only; 64rem == 1024px at 16px root,
+     matching this repo's existing breakpoint convention) ── */
+  :root { --space-section: 6.5rem; }            /* 104px section rhythm */
+  .container { max-width: 1240px; padding-inline: 32px; }
+  main p { max-width: 68ch; }                    /* cap reading measure */
+  .hero h1 { font-size: clamp(2.5rem, 1.2rem + 2.6vw, 3.75rem); }
+  h2 { font-size: 2.125rem; }                    /* always < H1 (min 2.86rem at 1024px) */
+  .hero { padding-block: 4.5rem 5rem; }          /* no ballooning on tall monitors */
+  .hero__sub, .hero__cta { max-width: 55%; }     /* headline block owns the left; h1's 24ch cap already lands there */
+  .hero__cta { flex-direction: row; max-width: none; }
+
   .grid--3 { grid-template-columns: repeat(3, 1fr); }
   .photo-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
   .grid--4 { grid-template-columns: repeat(4, 1fr); }
+  .grid--4 > .card { height: 100%; }             /* equal card heights */
   .site-footer__grid { grid-template-columns: 2fr 1fr 1fr; }
   .split { grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
 }
