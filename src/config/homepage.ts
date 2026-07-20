@@ -39,6 +39,9 @@ export const homepage = {
   // Opening paragraph (Rule 13 #5 + Rule 21): talks TO the visitor about
   // their situation and why to convert. States the USP. Banned openers:
   // "Welcome to…", "We were founded in…", leading with the business name.
+  // Authorized intro H2 (desktop-polish brief, Change 2)
+  introH2: 'Hazardous Tree Removal in Pasadena, TX, Handled Right',
+
   openingParagraph:
     'A dead oak over the roof or a pine split by the last storm is not a wait-and-see problem. You want it gone safely, with no damage to the fence, the lines, or the lawn, and no surprise bill. That is the whole job here: an ISA Certified Arborist with 30 years on Gulf Coast trees, professional equipment for high-risk removals, and a simple promise that you pay nothing until the work is done and you are satisfied.',
 

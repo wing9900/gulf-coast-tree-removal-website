@@ -46,8 +46,17 @@ const categories = (await getCollection('categories')).sort(
 
   <!-- 5. Opening paragraph: visitor's situation + USP (Rule 21, never "Welcome to…") -->
   <section class="section">
-    <div class="container">
-      <p class="lead">{hp.openingParagraph}</p>
+    <div class="container intro-split">
+      <div class="intro-split__text">
+        <h2>{hp.introH2}</h2>
+        <p class="lead">{hp.openingParagraph}</p>
+      </div>
+      <img
+        class="intro-split__media"
+        src="/images/technical-tree-removal-near-power-lines-pasadena-tx.webp"
+        alt="Gulf Coast climber roped in at the top of a bare spar beside power lines during a hazardous tree removal in Pasadena, TX"
+        width="765" height="1020" loading="lazy" decoding="async"
+      />
     </div>
   </section>
 

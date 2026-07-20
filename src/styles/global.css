@@ -405,6 +405,7 @@ a.proof-band__badge.proof-band__badge--img:hover {
 /* ── Utilities ── */
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .lead { font-size: 1.14rem; max-width: 62ch; }
+.intro-split__media { display: none; }
 .split { display: grid; gap: 2rem; }
 
 /* ════════════════════════════════════════════════════════════════════
@@ -468,6 +469,8 @@ a.proof-band__badge.proof-band__badge--img:hover {
   .photo-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
   .grid--4 { grid-template-columns: repeat(4, 1fr); }
   .grid--4 > .card { height: 100%; }             /* equal card heights */
+  .intro-split { display: grid; grid-template-columns: 55fr 45fr; gap: 3rem; align-items: center; }
+  .intro-split__media { display: block; width: 100%; height: auto; }
   .site-footer__grid { grid-template-columns: 2fr 1fr 1fr; }
   .split { grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
 }
