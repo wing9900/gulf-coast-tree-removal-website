@@ -1,0 +1,18 @@
+---
+title: "Tree Trimming"
+h1: "Tree Trimming in Pasadena, TX — Arborist Cuts That Protect the Tree and the Roof"
+metaDescription: "Tree trimming in Pasadena, TX done right by an ISA-certified arborist. Deadwood pruning, canopy raising & storm prep for oaks and pines. Free estimates."
+homepageBlurb: "Bad trimming kills more Pasadena trees than storms do — topped crepe myrtles and butchered live oaks never fully recover. Certified-arborist trimming is the opposite: deadwood pruned out, canopies raised off the roofline, and storm-prone limbs reduced before hurricane season, with every cut placed where the tree can seal it. Your trees look better, stay healthier, and stop dropping limbs where you park."
+order: 2
+faqs:
+  - q: "When's the best time of year to trim trees in the Pasadena area?"
+    a: "Late winter dormancy is ideal for most species, and oak pruning is safest December–January because of oak wilt risk — but dead or hazardous limbs should come off any time of year."
+  - q: "Will trimming stop branches from landing on my roof every storm?"
+    a: "Mostly, yes — raising the canopy and removing dead or overextended limbs takes away the pieces storms throw first. That's exactly what our <a href=\"/services/tree-trimming/storm-preparation-trimming/\">storm preparation trimming</a> is for."
+---
+
+If limbs scrape the shingles every windy night, or half the branches over your patio are gray and bare, your trees are overdue — and in Pasadena, overdue trimming turns into storm damage. The goal isn't to make a tree smaller. It's to make it safer and healthier with the fewest, best-placed cuts.
+
+That's an arborist's job, not a hedge-trimmer's. Robert holds ISA credential TX-5075A, and every trim follows the [ANSI pruning standards the International Society of Arboriculture teaches](https://www.treesaregood.org/treeowner): no topping, no lion-tailing, no flush cuts that invite decay. One recent customer put it simply — the dead came out, the trees looked fantastic, and the crew blew the driveway clean before leaving.
+
+Most Pasadena trimming falls into three jobs. [Tree pruning](/services/tree-trimming/tree-pruning/) clears out deadwood and crossing branches so the canopy stays healthy. [Canopy trimming](/services/tree-trimming/canopy-trimming/) raises and shapes mature oaks so they clear roofs, drives, and sightlines. And [storm preparation trimming](/services/tree-trimming/storm-preparation-trimming/) thins the failure-prone limbs before hurricane season loads them. If an inspection shows a tree that's past saving, we'll say so honestly and walk you through [tree removal](/services/tree-removal/) instead of selling you a trim it doesn't need.
