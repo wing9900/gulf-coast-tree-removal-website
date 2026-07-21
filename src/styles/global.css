@@ -265,7 +265,7 @@ p:last-child { margin-bottom: 0; }
 }
 .hero__avatar:last-child { margin-right: 0; }
 .hero__avatar--photo { object-fit: cover; background: #fff; padding: 0; }
-.hero__pill-col { display: inline-flex; flex-direction: column; align-items: flex-start; line-height: 1.25; }
+.hero__pill-col { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.25; }
 .hero__pill-stars { color: var(--c-star); font-size: 0.88rem; letter-spacing: 0.1em; }
 .hero__pill-text { font-size: 0.92rem; font-weight: 600; white-space: nowrap; }
 .hero__pill-g { flex: none; width: 20px; height: 20px; }

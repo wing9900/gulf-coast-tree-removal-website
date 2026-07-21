@@ -12,7 +12,7 @@ export const homepage = {
     // e.g. "[City]'s Highest-Rated Tree Removal — 300+ Five-Star Reviews, Licensed & Insured"
     h1: "Pasadena Tree Services by an ISA Certified Arborist",
     benefits: ['30 Years of Experience', 'Free Estimates', 'Satisfaction Guaranteed'],
-    pillText: 'Trusted by Your Pasadena Neighbors',
+    pillText: 'Trusted by Your Neighbors',
 
     // Speaks to the visitor's desired OUTCOME and works in core services.
 
