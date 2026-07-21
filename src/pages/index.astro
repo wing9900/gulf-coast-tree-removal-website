@@ -38,7 +38,7 @@ const categories = (await getCollection('categories')).sort(
 
 <BaseLayout title={title} description={b.seo.homepageMetaDescription}>
   <!-- 1–3. H1 + subheadline + primary CTA + tap-to-call phone, above the fold -->
-  <Hero h1={hp.hero.h1} benefits={hp.hero.benefits} reviewers={hp.googleReviewers} ctaLabel={hp.hero.ctaLabel} image={hp.hero.image} />
+  <Hero h1={hp.hero.h1} benefits={hp.hero.benefits} reviewers={hp.googleReviewers} pillText={hp.hero.pillText} ctaLabel={hp.hero.ctaLabel} image={hp.hero.image} />
 
   <!-- 4. Social-proof band: rating + review count + badges -->
 
