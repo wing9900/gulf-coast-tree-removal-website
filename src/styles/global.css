@@ -230,7 +230,17 @@ p:last-child { margin-bottom: 0; }
    and sweeps diagonally on wide screens. */
 .hero--photo picture { display: contents; }
 .hero--photo > .container { text-align: center; }
-.hero--photo { padding-block: 2.25rem 2.25rem; }
+/* Mobile/tablet first-screen fill: viewport minus 5rem headroom, which
+   sits at or under the header's height at every sub-desktop width, so the
+   next section can never peek; small overshoot lands below the fold.
+   svh uses the small viewport, so it fits even with browser chrome open.
+   The 64rem block overrides this with the desktop calc. */
+.hero--photo {
+  padding-block: 2.25rem 2.25rem;
+  min-height: calc(100vh - 5rem);
+  min-height: calc(100svh - 5rem);
+  display: grid; align-content: center;
+}
 .hero--photo h1 { margin-inline: auto; }
 .hero__benefits {
   display: flex; flex-wrap: wrap; justify-content: center; column-gap: 0.35rem; row-gap: 0.2rem;
