@@ -440,13 +440,15 @@ p:last-child { margin-bottom: 0; }
   .hero h1 { font-size: clamp(2.5rem, 1rem + 3.2vw, 4.75rem); }  /* ~49px@1024, ~72px@1760, 76px cap */
   h2 { font-size: 2.125rem; }                    /* always < H1 (min 2.86rem at 1024px) */
   .hero { padding-block: 4.5rem 5rem; }
-  /* First-screen fit: 100svh minus 12.5rem headroom so the header, the
-     full hero, AND the entire proof band (review pill + badges) land in
-     the first viewport together. The min() cap stops runaway height on
-     very tall monitors; copy centers vertically in the extra space. */
+  /* Full-first-screen hero: the pill now lives INSIDE the hero, so the
+     only headroom needed is the header itself. 4.5rem is at or under the
+     header's height at every desktop tier, so the next section can never
+     peek above the fold; any tiny overshoot lands invisibly below it.
+     The 86rem cap covers real desktop viewports (up to ~1376px tall)
+     while stopping runaway height on unscaled 4K portrait edge cases. */
   .hero--photo {
-    min-height: min(calc(100vh - 12.5rem), 62rem);
-    min-height: min(calc(100svh - 12.5rem), 62rem);
+    min-height: min(calc(100vh - 4.5rem), 86rem);
+    min-height: min(calc(100svh - 4.5rem), 86rem);
     display: grid; align-content: center;
   }
   .hero__cta { flex-direction: row; max-width: none; justify-content: center; }
