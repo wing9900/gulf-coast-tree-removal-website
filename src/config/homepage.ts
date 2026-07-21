@@ -10,11 +10,10 @@ export const homepage = {
     // the title tag, not copied — humans see this one, so spend the extra
     // words on a benefit, differentiator, or social proof.
     // e.g. "[City]'s Highest-Rated Tree Removal — 300+ Five-Star Reviews, Licensed & Insured"
-    h1: "Pasadena Tree Services by an ISA Certified Arborist With 30 Years of Experience",
+    h1: "Pasadena Tree Services by an ISA Certified Arborist",
+    benefits: ['30 Years of Experience', 'Free Estimates', 'Satisfaction Guaranteed'],
 
     // Speaks to the visitor's desired OUTCOME and works in core services.
-    subheadline:
-      'Hazardous removals, trimming, and stump grinding for Pasadena homes. Real equipment, a certified arborist on every job, and you pay nothing until the work is done.',
 
     ctaLabel: 'Get a Free Estimate',
 
@@ -43,7 +42,7 @@ export const homepage = {
   introH2: 'Hazardous Tree Removal in Pasadena, TX, Handled Right',
 
   openingParagraph:
-    'A dead oak over the roof or a pine split by the last storm is not a wait-and-see problem. You want it gone safely, with no damage to the fence, the lines, or the lawn, and no surprise bill. That is the whole job here: an ISA Certified Arborist with 30 years on Gulf Coast trees, professional equipment for high-risk removals, and a simple promise that you pay nothing until the work is done and you are satisfied.',
+    "When you need tree services, you shouldn't have to worry whether the company you're calling can do the job safely and efficiently. Every tree job here is handled by an ISA Certified Arborist with 30 years of tree care experience on the Gulf Coast, because that's what your property deserves. It's also why so many of your Pasadena neighbors have rated our work a perfect 5 stars on Google. From routine pruning to technical removals, the hard jobs are the specialty here, not the exception.",
 
   // Why Choose Us (Rule 13 #6) — high on the page, never buried.
   // Static grid, no carousel (Rule 24). Specifics beat adjectives (Rule 22).
@@ -74,15 +73,6 @@ export const homepage = {
     { img: '/images/reviewers/reviewer-5.webp' },
   ] as ReadonlyArray<{ img?: string; initials?: string; bg?: string }>,
 
-  proofBadges: [
-    {
-      label: 'ISA Certified Arborist TX-5075A',
-      href: 'https://www.treesaregood.org/findanarborist/verify',
-      img: { src: '/images/isa-certified-arborist-logo.webp', width: 400, height: 678 },
-    },
-    { label: 'Fully Insured', href: '' },
-    { label: 'Free Estimates', href: '' },
-  ],
 
   // Homepage FAQs (Rule 13 #10, Rule 30 pattern): GENERAL questions only —
   // service-specific FAQs live on their service pages. Reword PAA questions,
