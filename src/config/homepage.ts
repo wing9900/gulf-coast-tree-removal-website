@@ -43,7 +43,7 @@ export const homepage = {
   introH2: 'Hazardous Tree Removal in Pasadena, TX, Handled Right',
 
   openingParagraph:
-    "When you need tree services, you shouldn't have to worry whether the company you're calling can do the job safely and efficiently. Every tree job here is handled by an ISA Certified Arborist with 30 years of tree care experience on the Gulf Coast, because that's what your property deserves. It's also why so many of your Pasadena neighbors have rated our work a perfect 5 stars on Google. From routine pruning to technical removals, the hard jobs are the specialty here, not the exception.",
+    "When you need tree services, you shouldn't have to worry whether the company you're calling can do the job safely and efficiently. Every project here is handled by an ISA Certified Arborist with 30 years of tree care experience on the Gulf Coast, because that's what your property deserves. Technical removals, crown pruning, stump grinding, and storm cleanup are just a few examples of the services guided by the same certified expertise. Every job is completed to the industry standards set by the American National Standards Institute (ANSI) using professional equipment to ensure it's done right, and to your satisfaction, guaranteed.",
 
   // Why Choose Us (Rule 13 #6) — high on the page, never buried.
   // Static grid, no carousel (Rule 24). Specifics beat adjectives (Rule 22).
