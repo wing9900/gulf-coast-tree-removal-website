@@ -246,8 +246,19 @@ p:last-child { margin-bottom: 0; }
    the hero in flow, so subtract exactly that. vh first as the fallback. */
 .hero--photo {
   padding-block: 2.25rem 2.25rem;
-  min-height: calc(100vh - 70px);
-  min-height: calc(100svh - 70px);
+  /* Full-viewport hero.
+     lvh = LARGE viewport height: the viewport with browser chrome
+     RETRACTED, i.e. the largest it ever gets. Sizing to the full lvh (NOT
+     lvh minus a hand-measured header height) is what finally makes this
+     robust: every fixed offset I tried was wrong at some width, because
+     header height varies by breakpoint and device pixel ratio. The header
+     sits above the hero in normal flow, so the page simply becomes
+     header + full-viewport hero. That pushes the hero's bottom edge just
+     below the fold, which is invisible and harmless, and guarantees the
+     next section can NEVER peek at any width or chrome state.
+     vh first as the fallback for browsers without lvh. */
+  min-height: 100vh;
+  min-height: 100lvh;
   display: grid; align-content: center;
 }
 .hero--photo h1 { margin-inline: auto; }
@@ -476,8 +487,7 @@ p:last-child { margin-bottom: 0; }
      The 86rem cap covers real desktop viewports (up to ~1376px tall)
      while stopping runaway height on unscaled 4K portrait edge cases. */
   .hero--photo {
-    min-height: min(calc(100vh - 82px), 86rem);
-    min-height: min(calc(100svh - 82px), 86rem);
+    min-height: min(100lvh, 86rem);
     display: grid; align-content: center;
   }
   .hero__cta { flex-direction: row; max-width: none; justify-content: center; }
