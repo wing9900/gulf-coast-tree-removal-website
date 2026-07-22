@@ -49,12 +49,15 @@ const categories = (await getCollection('categories')).sort(
         <h2>{hp.introH2}</h2>
         <p class="lead">{hp.openingParagraph}</p>
       </div>
+      <picture class="intro-split__media">
+        <source media="(max-width: 63.99rem)" srcset="/images/bucket-truck-pine-removal-residential-street-pasadena-tx-mobile.webp" width="768" height="795" />
       <img
-        class="intro-split__media"
+        class="intro-split__img"
         src="/images/bucket-truck-pine-removal-residential-street-pasadena-tx.webp"
         alt="Gulf Coast Tree Removal arborist working from a fully extended bucket truck to remove a tall pine on a residential street in Pasadena, TX"
         width="765" height="1020" loading="lazy" decoding="async"
       />
+      </picture>
     </div>
   </section>
 
