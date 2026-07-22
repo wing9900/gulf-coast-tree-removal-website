@@ -259,7 +259,10 @@ p:last-child { margin-bottom: 0; }
      vh first as the fallback for browsers without lvh. */
   min-height: 100vh;
   min-height: 100lvh;
-  display: grid; align-content: center;
+  /* start-weighted, not centred: centring in a full-viewport box pushed the
+     H1 too far down the screen once the header's visual weight was counted.
+     The small top offset keeps it off the header without burying it. */
+  display: grid; align-content: start; padding-top: 3.5rem;
 }
 .hero--photo h1 { margin-inline: auto; }
 .hero__benefits {
@@ -295,10 +298,13 @@ p:last-child { margin-bottom: 0; }
 }
 .hero--photo::before {
   z-index: 1;
+  /* Heavy where the copy sits, light where the truck sits. The stack
+     occupies roughly the top two thirds, so the lower third only needs
+     enough tint to keep the buttons legible. */
   background-image: linear-gradient(180deg,
-    rgba(13, 42, 27, 0.94) 0%,
-    rgba(13, 42, 27, 0.84) 48%,
-    rgba(13, 42, 27, 0.66) 100%);
+    rgba(13, 42, 27, 0.92) 0%,
+    rgba(13, 42, 27, 0.80) 45%,
+    rgba(13, 42, 27, 0.40) 100%);
 }
 @media (min-width: 48rem) {
   .hero--photo .hero__img { object-position: center 42%; }
@@ -501,7 +507,7 @@ p:last-child { margin-bottom: 0; }
      while stopping runaway height on unscaled 4K portrait edge cases. */
   .hero--photo {
     min-height: min(100lvh, 86rem);
-    display: grid; align-content: center;
+    display: grid; align-content: center; padding-top: 0;
   }
   .hero__cta { flex-direction: row; max-width: none; justify-content: center; }
   .hero__benefits { font-size: 1.3rem; margin-top: 1.1rem; }
