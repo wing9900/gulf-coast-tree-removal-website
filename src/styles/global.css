@@ -313,7 +313,7 @@ p:last-child { margin-bottom: 0; }
 .hero__eyebrow::before { content: ''; width: 1.7rem; height: 3px; background: var(--c-accent); border-radius: 2px; }
 .hero h1 { color: #fff; max-width: 24ch; text-shadow: 0 2px 18px rgb(13 42 27 / 0.45); }
 .hero h1::before { content: none; }
-.hero__cta { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem; max-width: 24rem; margin-inline: auto; }
+.hero__cta { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 2.25rem; max-width: 24rem; margin-inline: auto; }
 .hero .btn--outline { color: #fff; }
 .hero .breadcrumbs, .hero .breadcrumbs a { color: var(--c-accent-soft); }
 
