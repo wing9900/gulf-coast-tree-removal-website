@@ -40,7 +40,7 @@ export const homepage = {
   // their situation and why to convert. States the USP. Banned openers:
   // "Welcome to…", "We were founded in…", leading with the business name.
   // Authorized intro H2 (desktop-polish brief, Change 2)
-  introH2: 'Hazardous Tree Removal in Pasadena, TX, Handled Right',
+  introH2: 'Full-Service Tree Care in Pasadena, TX',
 
   openingParagraph:
     "When you need tree services, you shouldn't have to worry whether the company you're calling can do the job safely and efficiently. Every project here is handled by an ISA Certified Arborist with 30 years of tree care experience on the Gulf Coast, because that's what your property deserves. Technical removals, crown pruning, stump grinding, and storm cleanup are just a few examples of the services guided by the same certified expertise. Every job is completed to the industry standards set by the American National Standards Institute (ANSI) using professional equipment to ensure it's done right, and to your satisfaction, guaranteed.",
