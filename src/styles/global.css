@@ -230,15 +230,17 @@ p:last-child { margin-bottom: 0; }
    and sweeps diagonally on wide screens. */
 .hero--photo picture { display: contents; }
 .hero--photo > .container { text-align: center; }
-/* Mobile/tablet first-screen fill: viewport minus 5rem headroom, which
-   sits at or under the header's height at every sub-desktop width, so the
-   next section can never peek; small overshoot lands below the fold.
-   svh uses the small viewport, so it fits even with browser chrome open.
-   The 64rem block overrides this with the desktop calc. */
+/* Mobile/tablet first-screen fill.
+   dvh (dynamic viewport height) tracks the ACTUAL visible height as the
+   browser's address bar shows and hides. svh would size to the smallest
+   case and leave a gap once the bar retracts; vh would overflow when it
+   expands. The header is 70px (46px logo + 0.75rem padding top/bottom)
+   and sits above the hero in normal flow, so subtract exactly that.
+   vh first as the fallback for browsers without dvh support. */
 .hero--photo {
   padding-block: 2.25rem 2.25rem;
-  min-height: calc(100vh - 5rem);
-  min-height: calc(100svh - 5rem);
+  min-height: calc(100vh - 70px);
+  min-height: calc(100dvh - 70px);
   display: grid; align-content: center;
 }
 .hero--photo h1 { margin-inline: auto; }
@@ -311,7 +313,7 @@ p:last-child { margin-bottom: 0; }
 .hero__eyebrow::before { content: ''; width: 1.7rem; height: 3px; background: var(--c-accent); border-radius: 2px; }
 .hero h1 { color: #fff; max-width: 24ch; text-shadow: 0 2px 18px rgb(13 42 27 / 0.45); }
 .hero h1::before { content: none; }
-.hero__cta { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.4rem; max-width: 26rem; margin-inline: auto; }
+.hero__cta { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem; max-width: 24rem; margin-inline: auto; }
 .hero .btn--outline { color: #fff; }
 .hero .breadcrumbs, .hero .breadcrumbs a { color: var(--c-accent-soft); }
 
@@ -459,8 +461,8 @@ p:last-child { margin-bottom: 0; }
      The 86rem cap covers real desktop viewports (up to ~1376px tall)
      while stopping runaway height on unscaled 4K portrait edge cases. */
   .hero--photo {
-    min-height: min(calc(100vh - 4.5rem), 86rem);
-    min-height: min(calc(100svh - 4.5rem), 86rem);
+    min-height: min(calc(100vh - 82px), 86rem);
+    min-height: min(calc(100dvh - 82px), 86rem);
     display: grid; align-content: center;
   }
   .hero__cta { flex-direction: row; max-width: none; justify-content: center; }
