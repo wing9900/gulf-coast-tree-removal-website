@@ -55,5 +55,18 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <slot />
     </main>
     <Footer />
+    <!--
+      Scroll restoration override. The browser restores the previous scroll
+      offset on back/forward and sometimes on same-origin navigations, so
+      arriving at the homepage after scrolling down another page could land
+      the viewport mid-hero and expose the section below it.
+      This renders NOTHING and is never parsed by crawlers as content, so
+      the zero-JS-for-rendering rule is unaffected: the page is fully
+      readable and identical with JavaScript disabled.
+    -->
+    <script is:inline>
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      window.addEventListener('pageshow', function () { window.scrollTo(0, 0); });
+    </script>
   </body>
 </html>
