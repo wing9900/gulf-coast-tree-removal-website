@@ -316,7 +316,9 @@ p:last-child { margin-bottom: 0; }
    width/height attrs on every img mean zero layout shift. */
 .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-block: 1.1rem; }
 .photo-grid img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; transition: filter 160ms ease, box-shadow 160ms ease; }
-.photo-grid a:hover img, .photo-grid img:hover { filter: brightness(1.07) saturate(1.05); box-shadow: 0 8px 22px rgb(13 42 27 / 0.18); }
+@media (hover: hover) and (pointer: fine) {
+  .photo-grid a:hover img, .photo-grid img:hover { filter: brightness(1.07) saturate(1.05); box-shadow: 0 8px 22px rgb(13 42 27 / 0.18); }
+}
 .photo-grid figure { margin: 0; }
 .photo-grid figcaption { font-size: 0.85rem; color: var(--c-ink-soft); margin-top: 0.4rem; }
 
@@ -342,9 +344,15 @@ p:last-child { margin-bottom: 0; }
   padding: 1.4rem 1.25rem; box-shadow: var(--shadow-card);
   transition: transform 160ms ease, box-shadow 160ms ease, border-top-color 160ms ease;
 }
-.card:hover { transform: translateY(-3px); border-top-color: var(--c-accent); box-shadow: 0 3px 6px rgb(13 42 27 / 0.06), 0 14px 30px rgb(13 42 27 / 0.12); }
 .card--flow { margin-bottom: 1.5rem; border-left: 4px solid var(--c-primary); }
-.card--flow:hover { border-top-color: var(--c-line); border-left-color: var(--c-accent); transform: none; }
+/* Hover styling is gated to pointer devices. On touchscreens Safari applies
+   a "sticky hover" on tap that persists until another tap, so these read as
+   random colour changes on a phone. Mouse/trackpad users get the full effect;
+   touch users get a stable card. */
+@media (hover: hover) and (pointer: fine) {
+  .card:hover { transform: translateY(-3px); border-top-color: var(--c-accent); box-shadow: 0 3px 6px rgb(13 42 27 / 0.06), 0 14px 30px rgb(13 42 27 / 0.12); }
+  .card--flow:hover { border-top-color: var(--c-line); border-left-color: var(--c-accent); transform: none; }
+}
 .card-title { font-size: var(--fs-card-h2); margin-bottom: 0.45em; } /* semantic H2, visually sub-H1 */
 .card h3 { margin-bottom: 0.35em; }
 
@@ -424,7 +432,12 @@ p:last-child { margin-bottom: 0; }
    two-column layout below. */
 .intro-split__media { display: block; margin-top: 1.5rem; }
 .intro-split__img {
-  width: 100%; max-height: 300px; object-fit: cover; object-position: center top;
+  /* No cropping on mobile. The earlier max-height + object-fit:cover forced
+     this wide scene into a near-square box and sliced off the boom and truck.
+     The source file is already the art-directed crop (foreground trimmed),
+     so it renders at its natural aspect ratio: the whole scene stays legible
+     and nothing is cut. height:auto is what keeps the aspect intact. */
+  width: 100%; height: auto;
   border-radius: var(--radius); box-shadow: 0 6px 20px rgb(13 42 27 / 0.18);
 }
 .split { display: grid; gap: 2rem; }
