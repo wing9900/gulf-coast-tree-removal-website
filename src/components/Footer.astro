@@ -7,8 +7,20 @@
 import { business as b, cityState, telHref } from '../config/business';
 const year = new Date().getFullYear();
 
-const dayLabel = (days: readonly string[]) =>
-  days.length > 1 ? `${days[0].slice(0, 3)}–${days[days.length - 1].slice(0, 3)}` : days[0];
+// Collapse only CONTIGUOUS day runs (matches MapNAP.astro) so exception
+// days render as "Mon, Wed–Fri" instead of a contradictory "Mon–Fri".
+const WEEK = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const dayLabel = (days: readonly string[]) => {
+  const runs: string[][] = [];
+  for (const d of days) {
+    const run = runs[runs.length - 1];
+    if (run && WEEK.indexOf(d) === WEEK.indexOf(run[run.length - 1]) + 1) run.push(d);
+    else runs.push([d]);
+  }
+  return runs
+    .map((r) => (r.length > 1 ? `${r[0].slice(0, 3)}–${r[r.length - 1].slice(0, 3)}` : r[0].slice(0, 3)))
+    .join(', ');
+};
 ---
 
 <footer class="site-footer">

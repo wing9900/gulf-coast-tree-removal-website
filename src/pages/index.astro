@@ -83,7 +83,7 @@ const categories = (await getCollection('categories')).sort(
   <section class="section">
     <div class="container">
       <p class="eyebrow">What we do</p>
-      <h2>Our {b.primaryCategory} Services in {b.address.city}</h2>
+      <h2>Our Tree Services in {b.address.city}</h2>
       {categories.map((cat) => (
         <article class="card card--flow">
           <h2 class="card-title">{cat.data.title} in {b.address.city}</h2>

@@ -10,6 +10,7 @@
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ReviewsEmbed from '../components/ReviewsEmbed.astro';
+import NewsFeature from '../components/NewsFeature.astro';
 import CTA from '../components/CTA.astro';
 import { business as b, cityState } from '../config/business';
 
@@ -33,14 +34,28 @@ const description = `Read verified Google reviews for ${b.name}, a ${b.primaryCa
 
   <ReviewsEmbed heading={`Verified Google Reviews from ${b.address.city} Customers`} />
 
+  <NewsFeature />
+
   <section class="section">
     <div class="container">
       <h2>Why Reviews From Real {b.address.city} Customers Matter</h2>
       <p>
-        [FILL-IN: 2–3 short paragraphs, second person, on how the business earns these
-        reviews, response times, guarantees, named credentials. Specifics beat
-        adjectives (Rule 22). Include an editorial link to the most important
-        category or service page.]
+        Every review above is a live Google review from a real job — nothing on this
+        page is re-typed, curated, or paid for. Anyone can read the same reviews
+        directly on the company's Google listing, which is exactly the point: what
+        you see here is what your neighbors actually said.
+      </p>
+      <p>
+        The reviews get earned the same way every time. Robert — an ISA Certified
+        Arborist, credential TX-5075A — answers the phone himself, shows up for a
+        free on-site estimate, and puts the promises in writing: fully insured, free
+        stump grinding with every <a href="/services/tree-removal/">tree removal</a>,
+        a 10% senior discount, and no money due until the work is done and you're
+        satisfied.
+      </p>
+      <p>
+        That last one matters most. When a company doesn't collect until you're
+        happy, the five-star average isn't marketing — it's the receipts.
       </p>
     </div>
   </section>

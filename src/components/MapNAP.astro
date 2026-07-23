@@ -8,8 +8,19 @@
  */
 import { business as b, telHref, cityState } from '../config/business';
 
-const dayLabel = (days: readonly string[]) =>
-  days.length > 1 ? `${days[0]}–${days[days.length - 1]}` : days[0];
+// Collapse only CONTIGUOUS day runs, so an exception day (e.g. Tuesday's
+// earlier close) renders as "Monday, Wednesday–Friday" — never a
+// "Monday–Friday" line that contradicts the exception's own line.
+const WEEK = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const dayLabel = (days: readonly string[]) => {
+  const runs: string[][] = [];
+  for (const d of days) {
+    const run = runs[runs.length - 1];
+    if (run && WEEK.indexOf(d) === WEEK.indexOf(run[run.length - 1]) + 1) run.push(d);
+    else runs.push([d]);
+  }
+  return runs.map((r) => (r.length > 1 ? `${r[0]}–${r[r.length - 1]}` : r[0])).join(', ');
+};
 ---
 
 <section class="section">
