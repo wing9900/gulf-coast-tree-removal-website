@@ -315,9 +315,16 @@ p:last-child { margin-bottom: 0; }
    line up through the common "Large" (~1.3x) setting; wrap stays as the
    graceful fallback at extreme scales. Tablet/desktop keep 0.92rem. */
 @media (max-width: 47.99rem) {
-  .hero__pill-text { font-size: 0.75rem; }
-  .hero__pill-stars { font-size: 0.78rem; }
+  .hero__pill-text { font-size: 0.8rem; }
+  .hero__pill-stars { font-size: 0.8rem; }
+  /* Slightly tighter capsule padding/gaps buy the ~10px that keep the
+     text on one line when Android font scaling hits ~1.3x. */
+  .hero__pill { gap: 0.4rem; padding: 0.4rem 0.6rem 0.4rem 0.5rem; }
   .hero__avatars .hero__avatar:nth-child(n + 5) { display: none; }
+  /* The hidden 5th is still :last-child, so the base "last avatar gets
+     no stack overlap" rule misses the visible 4th — zero it here or its
+     -10px margin drags the text into the avatar. */
+  .hero__avatars .hero__avatar:nth-child(4) { margin-right: 0; }
 }
 .hero__pill-g { flex: none; width: 20px; height: 20px; }
 .hero--photo .hero__img {
