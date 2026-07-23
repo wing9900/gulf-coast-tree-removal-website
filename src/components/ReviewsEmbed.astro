@@ -15,16 +15,19 @@ interface Props { heading?: string }
 const { heading = `What Customers in ${b.address.city} Say` } = Astro.props;
 const hasRating = b.gbp.ratingValue > 0 && b.gbp.reviewCount > 0;
 
-// Excerpts of real 5-star Google reviews, trimmed at sentence boundaries
-// with obvious typos normalized (meaning never altered, nothing added).
-// `when` = the posting date as shown on the Google listing; leave '' until
-// the real date is confirmed from the profile. NEVER guess a date.
-const reviews = [
-  { name: 'Rachel S', bg: '#c62828', when: '', text: 'He was very quick to respond, come out and get the tree removed! Great value as well.' },
-  { name: 'John K', bg: '#2e7d32', when: '', text: 'Robert with Gulf Coast Tree is very skilled and professional. I have seen no job too big or too small for his expertise.' },
-  { name: 'Mrs. G', bg: '#7b1fa2', when: '', text: 'Robert, the owner of Gulf Coast Tree Removal, gave me a fair quote on my Live Oak tree in my front yard.' },
-  { name: 'Theresa P', bg: '#00838f', when: '', text: 'We had Gulf Coast Tree Removal take down a large pine tree in our yard that was leaning toward our house.' },
-] as const;
+// Real 5-star Google reviews supplied by the owner from the live listing
+// (screenshots, July 2026), lightly normalized for spelling only, nothing
+// added. `when` converts the listing's relative stamp to the real month.
+// Charala and Charles have real profile photos (already saved in
+// /images/reviewers/ for the hero pill); the other three use initials on
+// Google itself, so their cards mirror that with Google's avatar colors.
+const reviews: ReadonlyArray<{ name: string; when: string; text: string; img?: string; bg?: string }> = [
+  { name: 'Charles Hendrickson', img: '/images/reviewers/reviewer-2.webp', when: 'June 2026', text: 'Absolutely fantastic job. Gulf Coast Tree Removal got to my house first thing in the morning. Started right away and was done by 2pm. Trees look fantastic! No more worrying about a storm dropping limbs through my roof. Thanks Robert, great job! I will refer Gulf Coast Tree Removal to everyone now! 10 out of 10.' },
+  { name: 'Karl Busing', bg: '#4a5c68', when: 'March 2026', text: 'They did a great job and I was totally impressed with this company, equipment, people and attitude. They were on time, worked steadily, performed the job as estimated and agreed on. They will be my go to tree company in the future.' },
+  { name: 'Charala Holloway', img: '/images/reviewers/reviewer-3.webp', when: 'October 2025', text: 'I have to say these two guys were awesome. The trim of trees took out the dead, did a fantastic job. The price was great, actually cleaned up and blew my driveway clean. I would highly recommend these two guys, very honest and very true to their word. Fantastic job.' },
+  { name: 'Jill Massie', bg: '#b3390f', when: '2025', text: 'Called Robert and he responded the same day to give a quote. And completed the job the next day. We are not easy customers and he did everything to meet our requests and did it 100%. Price was spot on for all the hard work he did. Will definitely use him again.' },
+  { name: 'Rickey Nelson', bg: '#e0561f', when: '2025', text: "Robert did an amazing and professional job of removing a tree that was lying on my house and garage. He made sure he didn't damage the structures any more than they were. I highly recommend him for your small and large tree jobs." },
+];
 
 const gLogo = '<svg viewBox="0 0 48 48" width="18" height="18" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>';
 ---
@@ -46,7 +49,11 @@ const gLogo = '<svg viewBox="0 0 48 48" width="18" height="18" aria-hidden="true
       {reviews.map((r) => (
         <article class="gbp-review">
           <header class="gbp-review__head">
-            <span class="gbp-review__avatar" style={`background:${r.bg}`} aria-hidden="true">{r.name.charAt(0)}</span>
+            {r.img ? (
+              <img class="gbp-review__avatar gbp-review__avatar--photo" src={r.img} alt="" width="40" height="40" loading="lazy" decoding="async" />
+            ) : (
+              <span class="gbp-review__avatar" style={`background:${r.bg}`} aria-hidden="true">{r.name.charAt(0)}</span>
+            )}
             <span class="gbp-review__id">
               <span class="gbp-review__name">{r.name}</span>
               <span class="gbp-review__meta"><Fragment set:html={gLogo} />{r.when && <span>{r.when}</span>}</span>

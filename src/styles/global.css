@@ -467,6 +467,7 @@ p:last-child { margin-bottom: 0; }
   display: inline-flex; align-items: center; justify-content: center;
   font-family: var(--font-display); font-size: 1.15rem; font-weight: 700;
 }
+.gbp-review__avatar--photo { object-fit: cover; }
 .gbp-review__id { display: flex; flex-direction: column; line-height: 1.3; min-width: 0; }
 .gbp-review__name { font-weight: 600; color: var(--c-ink); }
 .gbp-review__meta { display: inline-flex; align-items: center; gap: 0.3rem; font-size: var(--fs-small); color: var(--c-ink-soft); }
@@ -478,6 +479,11 @@ p:last-child { margin-bottom: 0; }
 }
 @media (min-width: 64rem) {
   .gbp-reviews { gap: 1.25rem; }
+}
+/* Odd card count: the last review spans both columns instead of leaving
+   an empty cell. */
+@media (min-width: 48rem) {
+  .gbp-reviews > .gbp-review:last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
 .reviews-cta { text-align: center; margin: 1.6rem 0 0; max-width: none; }
 /* "See all reviews" as a soft white pill with the G mark — reads like a
