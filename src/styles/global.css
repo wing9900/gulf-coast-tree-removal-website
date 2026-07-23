@@ -625,7 +625,11 @@ p:last-child { margin-bottom: 0; }
      matching this repo's existing breakpoint convention) ── */
   :root { --space-section: 6.5rem; }            /* 104px section rhythm */
   .container { max-width: 1240px; padding-inline: 32px; }
-  main p { max-width: 68ch; }                    /* cap reading measure */
+  /* Reading measure: cap AND centre the column, so capped paragraphs sit
+     under the centred H2s instead of pinned to the container's left edge. */
+  main p { max-width: 68ch; margin-inline: auto; }
+  /* FAQ answers stay left-aligned with their questions. */
+  .faq-item p { margin-inline: 0; }
   .eyebrow { font-size: 1.05rem; }
   .hero h1 { font-size: clamp(2.5rem, 1rem + 3.2vw, 4.75rem); }  /* ~49px@1024, ~72px@1760, 76px cap */
   h2 { font-size: 2.125rem; }                    /* always < H1 (min 2.86rem at 1024px) */
