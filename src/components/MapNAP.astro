@@ -21,6 +21,12 @@ const dayLabel = (days: readonly string[]) => {
   }
   return runs.map((r) => (r.length > 1 ? `${r[0]}–${r[r.length - 1]}` : r[0])).join(', ');
 };
+// 00:00–23:59 is the schema.org open-all-day convention — show it in words.
+const timeLabel = (h: { opens: string; closes: string }) =>
+  h.opens === '00:00' && h.closes === '23:59' ? 'Open 24 hours' : `${h.opens}–${h.closes}`;
+// Days in no hours entry are closed days; render them so the week is complete.
+const covered = new Set(b.hours.flatMap((h) => h.days as readonly string[]));
+const closedDays = WEEK.filter((d) => !covered.has(d));
 ---
 
 <section class="section">
@@ -35,8 +41,11 @@ const dayLabel = (days: readonly string[]) => {
       </address>
       <ul class="hours-list">
         {b.hours.map((h) => (
-          <li><span>{dayLabel(h.days)}</span><span>{h.opens}–{h.closes}</span></li>
+          <li><span>{dayLabel(h.days)}</span><span>{timeLabel(h)}</span></li>
         ))}
+        {closedDays.length > 0 && (
+          <li><span>{dayLabel(closedDays)}</span><span>Closed</span></li>
+        )}
       </ul>
     </div>
     <div>

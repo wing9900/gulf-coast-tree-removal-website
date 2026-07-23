@@ -42,12 +42,11 @@ export const business = {
   // days: schema.org day names. 24/7 answering (AI receptionist)? Extend
   // legitimately — SABs rank through every hour competitors are closed.
   hours: [
-    // Mirrors the GBP as scraped July 2026. NOTE: GBP shows Tuesday closing
-    // at 6 PM while every other weekday closes at 7. Ask Robert if that is
-    // real. If not, fix the GBP FIRST, then make this match it exactly.
-    { days: ['Monday', 'Wednesday', 'Thursday', 'Friday'], opens: '07:00', closes: '19:00' },
-    { days: ['Tuesday'], opens: '07:00', closes: '18:00' },
-    { days: ['Saturday'], opens: '08:00', closes: '19:00' },
+    // Mirrors the GBP as pasted by the owner July 2026 ("Updated by this
+    // business 8 weeks ago"): Open 24 hours Monday–Saturday, closed Sunday.
+    // 00:00–23:59 is the schema.org convention for open-all-day; components
+    // render it as "Open 24 hours".
+    { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '00:00', closes: '23:59' },
   ],
 
   // ── Google Business Profile hooks ─────────────────────────────────
