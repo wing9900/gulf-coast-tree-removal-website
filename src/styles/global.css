@@ -619,7 +619,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 @media (min-width: 80rem) {
-  .site-header .container { max-width: 1400px; }  /* header breathes wider than content */
+  .site-header .container { max-width: 1600px; }  /* header breathes wider than content */
   .site-header__phone-full { display: inline; }
   .site-header__phone-short { display: none; }
   .site-header__logo { height: 54px; }
