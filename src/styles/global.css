@@ -379,6 +379,35 @@ p:last-child { margin-bottom: 0; }
 .photo-grid figure { margin: 0; }
 .photo-grid figcaption { font-size: 0.85rem; color: var(--c-ink-soft); margin-top: 0.4rem; }
 
+/* ── Click-to-enlarge (Recent Work) — native HTML popover, ZERO JS.
+   Grid thumbs are square crops; the popover shows the full uncropped
+   photo over a dimmed backdrop, sized for any screen. Tap outside or
+   Esc closes (popover light-dismiss); tapping the photo closes too.
+   Browsers without popover support just show the grid, nothing broken. */
+.pg-zoom {
+  display: block; width: 100%; padding: 0; border: 0; background: none;
+  cursor: zoom-in; -webkit-tap-highlight-color: transparent;
+}
+.photo-grid .pg-zoom:hover img { filter: brightness(1.07) saturate(1.05); box-shadow: 0 8px 22px rgb(13 42 27 / 0.18); }
+.lightbox { display: none; }             /* also hides dupes in old browsers */
+.lightbox:popover-open {
+  display: grid; place-items: center;
+  position: fixed; inset: 0; width: 100%; height: 100dvh;
+  max-width: none; max-height: none; margin: 0; padding: 1rem;
+  border: 0; background: transparent; overflow: hidden;
+}
+.lightbox::backdrop { background: rgb(13 42 27 / 0.86); }
+.lightbox__close {
+  padding: 0; border: 0; background: none; cursor: zoom-out;
+  -webkit-tap-highlight-color: transparent; max-width: 100%; max-height: 100%;
+}
+.lightbox img {
+  display: block; width: auto; height: auto;
+  max-width: min(94vw, 1200px); max-height: 88dvh;
+  object-fit: contain; border-radius: var(--radius);
+  box-shadow: 0 24px 70px rgb(0 0 0 / 0.5);
+}
+
 .cert-figure { max-width: 640px; margin: 1.4rem 0; }
 .cert-figure img { border: 1px solid var(--c-line, #ddd); }
 .cert-figure figcaption { font-size: 0.85rem; color: var(--c-ink-soft); margin-top: 0.4rem; }
