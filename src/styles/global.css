@@ -30,7 +30,10 @@
 @font-face {
   font-family: 'Barlow';
   src: url('/fonts/Barlow-SemiBold.woff2') format('woff2');
-  font-weight: 600; font-style: normal; font-display: swap;
+  /* Range covers 700 too: <strong>/bold requests get the real SemiBold
+     file instead of Windows synthesizing bold from it — faux bold under
+     ClearType is what fringes letters with red/purple edges. */
+  font-weight: 600 700; font-style: normal; font-display: swap;
 }
 
 :root {
@@ -103,12 +106,14 @@ h3 { font-size: var(--fs-h3); letter-spacing: 0.006em; }
 p  { margin: 0 0 1em; }
 p:last-child { margin-bottom: 0; }
 
-/* Eyebrow — small-caps section label above H2s */
+/* Eyebrow — small-caps section label above H2s. Plain centred type, no
+   decorative dash. max-width:none opts it out of the desktop `main p`
+   reading-measure cap, which was silently left-aligning its text box
+   while the H2 centred (the off-centre label users noticed). */
 .eyebrow {
-  font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--c-primary); margin: 0 0 0.5rem;
+  font-size: 0.95rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--c-primary); margin: 0 0 0.65rem; max-width: none;
 }
-.eyebrow::before { content: ''; display: inline-block; width: 1.7rem; height: 3px; background: var(--c-accent); margin-right: 0.55rem; vertical-align: 0.24em; border-radius: 2px; }
 
 /* Skip link (a11y) — visible only on keyboard focus */
 .skip-link {
@@ -415,6 +420,18 @@ p:last-child { margin-bottom: 0; }
 
 .card-title { font-size: var(--fs-card-h2); margin-bottom: 0.45em; } /* semantic H2, visually sub-H1 */
 .card h3 { margin-bottom: 0.35em; }
+/* Card prose fills its card: the desktop `main p` 68ch reading cap is for
+   open page text, not cards, where it left a dead right half. */
+.card p { max-width: none; }
+
+/* Homepage category cards: single column on phones, two-up on desktop so
+   each card is a compact block instead of a full-width bar of whitespace.
+   An odd final card spans both columns. */
+.cat-grid { display: grid; gap: 1.1rem; }
+@media (min-width: 64rem) {
+  .cat-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .cat-grid > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
 
 /* ── FAQ — ALWAYS fully expanded (Rule 24: no accordions, ever) ── */
 .faq-item { border-top: 1px solid var(--c-line); padding-block: 1.05rem; }
@@ -567,6 +584,7 @@ p:last-child { margin-bottom: 0; }
   :root { --space-section: 6.5rem; }            /* 104px section rhythm */
   .container { max-width: 1240px; padding-inline: 32px; }
   main p { max-width: 68ch; }                    /* cap reading measure */
+  .eyebrow { font-size: 1.05rem; }
   .hero h1 { font-size: clamp(2.5rem, 1rem + 3.2vw, 4.75rem); }  /* ~49px@1024, ~72px@1760, 76px cap */
   h2 { font-size: 2.125rem; }                    /* always < H1 (min 2.86rem at 1024px) */
   .hero { padding-block: 4.5rem 5rem; }

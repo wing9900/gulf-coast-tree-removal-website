@@ -2,7 +2,7 @@
 title: "Stump Grinding"
 h1: "Stump Grinding in Pasadena, TX — Stumps and Roots Gone, Not Just Cut Low"
 metaDescription: "Stump grinding in Pasadena, TX — stumps ground below grade, root balls removed, invasive roots cut. Insured, ISA-certified arborist. Call (281) 757-2938."
-homepageBlurb: "A stump isn't done being a problem when the tree is gone — it dulls mower blades, sprouts suckers, feeds termites, and blocks every plan you have for that corner of the yard. We grind Pasadena stumps well below grade with professional-grade equipment, pull root balls when replanting or construction calls for it, and cut the invasive roots headed for slabs and sewer lines. You're left with clean, level, usable ground."
+homepageBlurb: "A stump keeps charging rent long after the tree is gone. It sprouts suckers, dulls mower blades, invites termites, and squats on the exact spot you wanted grass or a fence post. Our tracked grinder takes stumps well below grade, and when a project calls for it we pull the root ball and chase the roots headed toward slabs and sewer lines. Grinding is included free with every removal we do, and standalone stumps get the same free written estimate."
 order: 3
 faqs:
   - q: "How far down do you grind a stump?"

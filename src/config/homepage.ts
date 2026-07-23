@@ -47,11 +47,14 @@ export const homepage = {
 
   // Why Choose Us (Rule 13 #6) — high on the page, never buried.
   // Static grid, no carousel (Rule 24). Specifics beat adjectives (Rule 22).
+  // Card themes are pulled from what real reviewers actually praise
+  // (punctuality, dealing with Robert directly, cleanup) plus the one
+  // technical differentiator competitors can't claim (ANSI A300 work).
   whyChooseUs: [
     { title: 'A Certified Arborist on Every Job', text: 'Robert Ebbecke holds ISA credential TX-5075A. You get a certified arborist deciding what comes down and what can be saved, not a guess from a guy with a chainsaw.' },
-    { title: 'No Money Until the Job Is Done', text: 'You pay nothing up front. The bill comes when the work is finished, the debris is gone, and you are satisfied with your yard.' },
-    { title: 'Free Stump Grinding With Every Removal', text: 'Estimates are free, and every tree we remove includes stump grinding at no extra charge. Seniors take 10% off, and veterans get a military discount.' },
-    { title: 'Equipment Built for Hazardous Trees', text: 'Forestry bucket truck, Bandit chipper, tracked stump grinder, and a grapple skid steer. Big, leaning, storm-damaged trees come down safely instead of becoming your problem.' },
+    { title: 'You Deal With Robert, Start to Finish', text: 'The person who answers your call is the arborist who walks your property, writes your price, and runs the crew. Reviewers mention Robert by name because he is the one who shows up.' },
+    { title: 'Work Done to the ANSI A300 Standard', text: 'Every cut lands at the branch collar. No topping, no climbing spikes in a tree that stays, never more than a quarter of the live canopy in a season. The same written standard cities and utilities require.' },
+    { title: 'A Cleaner Yard Than We Found', text: 'Limbs chipped, wood hauled, sawdust raked, driveway blown off. Read the reviews and you will see the cleanup praised almost as often as the tree work itself.' },
   ],
 
   // Social-proof band (Rule 23): badges/credential names shown under the

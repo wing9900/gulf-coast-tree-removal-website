@@ -2,7 +2,7 @@
 title: "Tree Health & Preservation"
 h1: "Tree Health & Preservation in Pasadena, TX — Save the Tree Before It Becomes a Removal"
 metaDescription: "Tree health care in Pasadena, TX: disease treatment, deep root fertilization, borer control & cabling by an ISA Certified Arborist. Call (281) 757-2938."
-homepageBlurb: "Half the trees we're called to remove in Pasadena could have been saved a year earlier. Diagnosis and treatment by an ISA Certified Arborist — deep root fertilization for compacted Gulf Coast clay, disease and borer treatment for stressed oaks and pines, and cabling that keeps storm-split trunks standing. Removal is the last resort, not the first quote."
+homepageBlurb: "Half the removals we quote could have been avoided if someone had looked at the tree a year sooner. That look is what this category is. Robert diagnoses before anyone starts a saw: deep root fertilization for trees starving in compacted clay, treatment for oak wilt and pine beetles, cables and braces for a storm-split trunk that is still worth keeping. If the tree can be saved, we save it. If it cannot, you hear that straight, and only then do we talk about removal."
 order: 5
 faqs:
   - q: "How can I tell if my tree is sick or just stressed from heat?"

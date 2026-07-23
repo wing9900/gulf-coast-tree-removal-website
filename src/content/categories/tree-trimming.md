@@ -2,7 +2,7 @@
 title: "Tree Trimming"
 h1: "Tree Trimming in Pasadena, TX — Arborist Cuts That Protect the Tree and the Roof"
 metaDescription: "Tree trimming in Pasadena, TX done right by an ISA-certified arborist. Deadwood pruning, canopy raising & storm prep for oaks and pines. Free estimates."
-homepageBlurb: "Bad trimming kills more Pasadena trees than storms do — topped crepe myrtles and butchered live oaks never fully recover. Certified-arborist trimming is the opposite: deadwood pruned out, canopies raised off the roofline, and storm-prone limbs reduced before hurricane season, with every cut placed where the tree can seal it. Your trees look better, stay healthier, and stop dropping limbs where you park."
+homepageBlurb: "Most of the ruined trees we see in Pasadena were wrecked by bad trimming, not weather. Topping forces weak regrowth that snaps in the first serious storm, which is why the ANSI A300 pruning standard prohibits it outright. We trim to that standard on every job: each cut at the branch collar, no climbing spikes in a tree that stays, never more than a quarter of the canopy in a season. Your trees end up healthier, better shaped, and much less likely to put a limb through the shingles."
 order: 2
 faqs:
   - q: "When's the best time of year to trim trees in the Pasadena area?"

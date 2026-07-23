@@ -2,7 +2,7 @@
 title: "Tree Removal"
 h1: "Tree Removal in Pasadena, TX — the Hazardous Jobs Other Crews Turn Down"
 metaDescription: "Safe tree removal in Pasadena, TX by an ISA-certified arborist. Hazardous, storm-damaged & large trees near lines and roofs. Free estimate: (281) 757-2938."
-homepageBlurb: "Removing a tree in Pasadena is a rigging problem, not a chainsaw problem — especially when it leans over a roof, a fence, or a CenterPoint line. This is our specialty: hazardous removals, emergency storm work, and large oaks and pines taken down in controlled sections by an ISA-certified arborist with 30 years of experience, fully insured, with the debris hauled and the driveway blown clean."
+homepageBlurb: "Some trees are past saving. A dead pine sheds limbs a little at a time, a storm-split oak leans further every week, and both are aimed at something you own. We take trees like that down in controlled sections, roped and lowered piece by piece, so nothing free-falls near your roof, fence, or power line. Robert looks at the tree first and gives you a firm written price. When the trailer leaves, the wood is gone and the driveway is blown clean."
 order: 1
 faqs:
   - q: "Do I need the city's permission before removing a tree on my Pasadena property?"

@@ -2,7 +2,7 @@
 title: "Land Clearing"
 h1: "Land Clearing in Pasadena, TX — From Overgrown Lot to Buildable Ground"
 metaDescription: "Land clearing in Pasadena, TX: lot clearing, brush hogging, debris hauling & on-site wood chipping. Insured crew, honest bids. Free estimate (281) 757-2938."
-homepageBlurb: "An overgrown Pasadena lot costs you either way — city code letters if you ignore it, or a weekend-eating fight if you attack it with rental equipment. We clear residential and commercial land with professional-grade machines: brush hogged, unwanted trees dropped, stumps ground, everything chipped or hauled. The lot goes from jungle to mowable, buildable, or sellable in days, not months, with one crew responsible start to finish."
+homepageBlurb: "An overgrown lot in Pasadena collects code letters, dumped trash, and snakes, and every season you wait it gets thicker. We clear it with our own machines. The brush hog knocks down the heavy growth, the grapple skid steer handles trees and debris, and the chipper turns the rest into mulch or loads for haul-off. Keeper trees get flagged and worked around. You get walkable, mowable, buildable ground in days, with one crew responsible from first pass to final load."
 order: 4
 faqs:
   - q: "What does it cost to clear a lot around Pasadena?"
