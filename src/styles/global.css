@@ -436,8 +436,11 @@ p:last-child { margin-bottom: 0; }
   .cat-grid > :last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
 /* Whole card clickable (zero JS): each card holds exactly one link, so a
-   stretched ::after overlay extends its tap target to the full card. */
+   stretched ::after overlay extends its tap target to the full card.
+   Tap-highlight off: the overlay makes the whole card the link's hit
+   area, so phones would flash the OS highlight over it on every tap. */
 .cat-grid .card { position: relative; }
+.cat-grid .card a { -webkit-tap-highlight-color: transparent; }
 .cat-grid .card a::after { content: ''; position: absolute; inset: 0; }
 
 /* ── FAQ — ALWAYS fully expanded (Rule 24: no accordions, ever) ── */
