@@ -325,6 +325,14 @@ p:last-child { margin-bottom: 0; }
      no stack overlap" rule misses the visible 4th — zero it here or its
      -10px margin drags the text into the avatar. */
   .hero__avatars .hero__avatar:nth-child(4) { margin-right: 0; }
+  /* iOS only (-webkit-touch-callout exists solely in WebKit): iPhones
+     don't inflate text the way Android font scaling does, so they can
+     afford the near-original size. Android ignores this block and keeps
+     0.8rem for the one-line guarantee. */
+  @supports (-webkit-touch-callout: none) {
+    .hero__pill-text { font-size: 0.9rem; }
+    .hero__pill-stars { font-size: 0.9rem; }
+  }
 }
 .hero__pill-g { flex: none; width: 20px; height: 20px; }
 .hero--photo .hero__img {
