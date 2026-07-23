@@ -477,8 +477,9 @@ p:last-child { margin-bottom: 0; }
   .gbp-reviews { grid-template-columns: 1fr 1fr; }
 }
 @media (min-width: 64rem) {
-  .gbp-reviews { grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
+  .gbp-reviews { gap: 1.25rem; }
 }
+.reviews-cta { text-align: center; margin: 1.6rem 0 0; max-width: none; }
 /* "See all reviews" as a soft white pill with the G mark — reads like a
    platform link, not a bare hyperlink. */
 .btn--reviews {
