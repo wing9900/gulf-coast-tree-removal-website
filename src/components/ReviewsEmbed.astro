@@ -1,19 +1,32 @@
 ---
 /**
- * REVIEWS, Rule 23: on-page reviews must be EMBEDDED LIVE from the GBP
- * in recognizable Google formatting. Never re-typed testimonial text,
- * never stock gray-avatar cards.
- *
- * FILL-IN STEP: drop the live GBP review embed (e.g. Elfsight/EmbedSocial
- * Google Reviews widget, 5–6 reviews horizontal) into the marked slot.
- * The aggregate card above it stays as plain crawlable HTML for
- * Google + AI models regardless of what the widget renders.
+ * REVIEWS (Rule 23, owner-amended July 2026): the live-widget slot is
+ * replaced by static cards quoting REAL Google reviews VERBATIM (typos
+ * preserved) until the owner gains access to the Google account for a
+ * live embed. Quotes sourced from the business's public review listings
+ * July 2026; every one is verifiable on the Google profile linked below.
+ * NEVER invent, edit, or embellish a review. Initials avatars only, no
+ * scraped reviewer photos. Swap this block for the live widget when the
+ * embed code exists.
  */
 import { business as b } from '../config/business';
 
 interface Props { heading?: string }
 const { heading = `What Customers in ${b.address.city} Say` } = Astro.props;
 const hasRating = b.gbp.ratingValue > 0 && b.gbp.reviewCount > 0;
+
+// Verbatim excerpts of real 5-star Google reviews, trimmed at sentence
+// boundaries. Avatar colors follow Google's account-avatar palette.
+const reviews = [
+  { name: 'Chris D', bg: '#1565c0', text: 'Called Gulf Coast to do some tree work around my home. Bobby showed up when he said he would! They did an awesome job! Clean work!' },
+  { name: 'Rachel S', bg: '#c62828', text: 'He was very quick to respond, come out and get the tree removed! Great value as well.' },
+  { name: 'John K', bg: '#2e7d32', text: "Robert with Gulf Coast Tree's is very skilled and professional. I have seen NO job too big or too small for his expertise." },
+  { name: 'Z-man T', bg: '#7b1fa2', text: 'Gulf Coast Tree Removal came out promptly and took down a huge oak that overhung house power, the house, and 3 neighbors fences.' },
+  { name: 'C A', bg: '#ef6c00', text: 'Great experience. Very professional, knowledgeable. Took down two trees and grinded stump down.' },
+  { name: 'Theresa P', bg: '#00838f', text: 'We had Gulf Coast Tree Removal take down a large pine tree in our yard that was leaning toward our house.' },
+] as const;
+
+const gLogo = '<svg viewBox="0 0 48 48" width="18" height="18" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>';
 ---
 
 <section class="section section--alt">
@@ -26,22 +39,27 @@ const hasRating = b.gbp.ratingValue > 0 && b.gbp.reviewCount > 0;
       <div class="rating-card">
         <span class="rating-card__excellent">Excellent</span>
         <span class="stars" aria-hidden="true">★★★★★</span>
-        <p class="rating-card__count">5-Star Rated on Google across {b.gbp.reviewCount}+ reviews</p>
+        <a class="btn btn--reviews" href={b.gbp.profileUrl} rel="noopener">
+          <Fragment set:html={gLogo} />
+          See All Our Reviews on Google
+        </a>
       </div>
     )}
 
-    <!-- ═══ LIVE GBP REVIEW EMBED GOES HERE (replace this placeholder) ═══ -->
-    <div class="gbp-embed-placeholder">
-      Live Google Business Profile review embed, 5–6 reviews, horizontal layout
+    <div class="gbp-reviews">
+      {reviews.map((r) => (
+        <article class="gbp-review">
+          <header class="gbp-review__head">
+            <span class="gbp-review__avatar" style={`background:${r.bg}`} aria-hidden="true">{r.name.charAt(0)}</span>
+            <span class="gbp-review__id">
+              <span class="gbp-review__name">{r.name}</span>
+              <span class="gbp-review__meta"><Fragment set:html={gLogo} /> Google review</span>
+            </span>
+          </header>
+          <span class="stars gbp-review__stars" aria-label="5 star rating">★★★★★</span>
+          <p>&ldquo;{r.text}&rdquo;</p>
+        </article>
+      ))}
     </div>
-
-    {b.gbp.profileUrl && (
-      <p class="reviews-cta">
-        <a class="btn btn--reviews" href={b.gbp.profileUrl} rel="noopener">
-          <svg viewBox="0 0 48 48" width="20" height="20" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-          See All Our Reviews on Google
-        </a>
-      </p>
-    )}
   </div>
 </section>
