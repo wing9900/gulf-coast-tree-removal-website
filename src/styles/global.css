@@ -397,6 +397,9 @@ p:last-child { margin-bottom: 0; }
   border: 0; background: transparent; overflow: hidden;
 }
 .lightbox::backdrop { background: rgb(13 42 27 / 0.86); }
+/* Lock the page behind an open lightbox (CSS-only via :has). Browsers
+   without :has simply keep scrolling; nothing breaks. */
+html:has(.lightbox:popover-open) { overflow: hidden; }
 .lightbox__close {
   padding: 0; border: 0; background: none; cursor: zoom-out;
   -webkit-tap-highlight-color: transparent; max-width: 100%; max-height: 100%;
