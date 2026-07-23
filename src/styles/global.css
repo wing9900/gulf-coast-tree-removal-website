@@ -398,8 +398,14 @@ p:last-child { margin-bottom: 0; }
 }
 .lightbox::backdrop { background: rgb(13 42 27 / 0.86); }
 /* Lock the page behind an open lightbox (CSS-only via :has). Browsers
-   without :has simply keep scrolling; nothing breaks. */
-html:has(.lightbox:popover-open) { overflow: hidden; }
+   without :has simply keep scrolling; nothing breaks.
+   touch-action: none is the part that makes iOS Safari honor the lock:
+   overflow: hidden alone lets touch/momentum scrolling slip through
+   inconsistently there. Taps (close button) still work; only pan and
+   pinch gestures are suppressed while a photo is open. */
+html:has(.lightbox:popover-open),
+html:has(.lightbox:popover-open) body { overflow: hidden; touch-action: none; }
+.lightbox:popover-open { overscroll-behavior: contain; touch-action: none; }
 .lightbox__close {
   padding: 0; border: 0; background: none; cursor: zoom-out;
   -webkit-tap-highlight-color: transparent; max-width: 100%; max-height: 100%;
