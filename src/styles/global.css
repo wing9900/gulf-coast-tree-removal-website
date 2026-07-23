@@ -432,6 +432,10 @@ p:last-child { margin-bottom: 0; }
   .cat-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
   .cat-grid > :last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
+/* Whole card clickable (zero JS): each card holds exactly one link, so a
+   stretched ::after overlay extends its tap target to the full card. */
+.cat-grid .card { position: relative; }
+.cat-grid .card a::after { content: ''; position: absolute; inset: 0; }
 
 /* ── FAQ — ALWAYS fully expanded (Rule 24: no accordions, ever) ── */
 .faq-item { border-top: 1px solid var(--c-line); padding-block: 1.05rem; }
@@ -440,12 +444,15 @@ p:last-child { margin-bottom: 0; }
 .faq-item h3::before { content: 'Q '; color: var(--c-accent); font-weight: 700; }
 
 /* ── Reviews ── */
-/* Aggregate card: score + gold stars + count, centred — the crawlable
-   AggregateRating text presented like a review platform, not a sentence. */
-.rating-card { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; margin-bottom: 1.5rem; }
-.rating-card__score { font-family: var(--font-display); font-size: 3rem; font-weight: 700; line-height: 1; color: var(--c-ink); }
+/* Section subtitle lines under the heading, centred (opt out of the
+   desktop reading-measure cap so the text box itself centres). */
+.reviews-sub { text-align: center; color: var(--c-ink-soft); margin: 0 auto 0.35rem; max-width: none; }
+.reviews-sub:last-of-type { margin-bottom: 1.6rem; }
+/* Aggregate block: EXCELLENT over gold stars over the Google line. */
+.rating-card { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; margin-bottom: 1.5rem; }
+.rating-card__excellent { font-family: var(--font-display); font-size: 1.9rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1; color: var(--c-ink); }
 .rating-card .stars { color: var(--c-star); font-size: 1.45rem; letter-spacing: 0.14em; }
-.rating-card__count { font-weight: 600; color: var(--c-ink-soft); }
+.rating-card__count { font-weight: 600; color: var(--c-ink-soft); max-width: none; }
 /* "See all reviews" as a soft white pill with the G mark — reads like a
    platform link, not a bare hyperlink. */
 .reviews-cta { text-align: center; margin-top: 1.5rem; }
