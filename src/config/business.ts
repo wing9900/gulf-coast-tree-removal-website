@@ -77,7 +77,7 @@ export const business = {
     // ~60-char display truncation that no human sees but Google reads.
     // Load with neighborhood names + topical variants, pipe-separated.
     // Leave '' to skip. e.g. 'Stump Grinding | Emergency Storm Cleanup | Pine Tree Removal | [Neighborhood 1] | [Neighborhood 2]'
-    titleTail: 'Tree Removal | Stump Grinding | Emergency Storm Cleanup | Lot Clearing | Deer Park | La Porte | South Houston',
+    titleTail: 'Tree Removal | Stump Grinding | Emergency Storm Cleanup | Lot Clearing | Cabling & Bracing | Deer Park | La Porte | South Houston',
     // Social share image — path under /public (e.g. '/og-image.webp'),
     // 1200×630. Leave '' to skip.
     ogImage: '/images/og-gulf-coast-tree-removal-pasadena-tx.jpg', // 1200×630 JPEG — some platforms mishandle WebP in og:image

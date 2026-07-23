@@ -43,7 +43,7 @@ const description = `Every tree service ${b.name} provides in ${cityState}. Brow
           .sort((a, z) => a.data.order - z.data.order);
         return (
           <article class="card card--flow">
-            <h2>{cat.data.title} in {b.address.city}</h2>
+            <h2>{cat.data.title}</h2>
             <p>
               {cat.data.homepageBlurb}{' '}
               <a href={`/services/${cat.id}/`}>See all {cat.data.title.toLowerCase()} services</a>.
