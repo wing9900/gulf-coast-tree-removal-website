@@ -266,6 +266,17 @@ p:last-child { margin-bottom: 0; }
      amount that actually looked right when measured. */
   display: grid; align-content: center; padding-bottom: 6.75rem;
 }
+/* Phones only (tablet ≥48rem keeps the full-lvh base rule): trim the
+   hero's bottom edge slightly so less photo hangs below the copy. Safe
+   as long as the trim stays under the 70px header height — the hero's
+   bottom then still lands at or below the fold in every chrome state,
+   so the next section can never peek. */
+@media (max-width: 47.99rem) {
+  .hero--photo {
+    min-height: calc(100vh - 3rem);
+    min-height: calc(100lvh - 3rem);
+  }
+}
 .hero--photo h1 { margin-inline: auto; }
 .hero__benefits {
   display: flex; flex-wrap: wrap; justify-content: center; column-gap: 0.35rem; row-gap: 0.2rem;
