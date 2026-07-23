@@ -234,7 +234,11 @@ p:last-child { margin-bottom: 0; }
    The scrim runs top-to-bottom on mobile (text spans the full height)
    and sweeps diagonally on wide screens. */
 .hero--photo picture { display: contents; }
-.hero--photo > .container { text-align: center; }
+/* Every hero is centred — interior page heroes (services hub, categories,
+   about, testimonials, contact, 404) match the homepage photo hero. */
+.hero > .container { text-align: center; }
+.hero h1 { margin-inline: auto; }
+.hero .breadcrumbs ol { justify-content: center; }
 /* Mobile/tablet first-screen fill.
    svh (SMALL viewport height) = the viewport with browser chrome fully
    EXPANDED, i.e. the smallest it ever gets. Sizing to it guarantees the
@@ -267,17 +271,16 @@ p:last-child { margin-bottom: 0; }
   display: grid; align-content: center; padding-bottom: 6.75rem;
 }
 /* Phones only (tablet ≥48rem keeps the full-lvh base rule): trim the
-   hero's bottom edge slightly so less photo hangs below the copy. Safe
-   as long as the trim stays under the 70px header height — the hero's
-   bottom then still lands at or below the fold in every chrome state,
-   so the next section can never peek. */
+   hero's bottom edge so less photo hangs below the copy. Safe as long
+   as the trim stays under the ~73px header height — the hero's bottom
+   then still lands at or below the fold in every chrome state, so the
+   next section can never peek. 4rem (64px) is the practical ceiling. */
 @media (max-width: 47.99rem) {
   .hero--photo {
-    min-height: calc(100vh - 3rem);
-    min-height: calc(100lvh - 3rem);
+    min-height: calc(100vh - 4rem);
+    min-height: calc(100lvh - 4rem);
   }
 }
-.hero--photo h1 { margin-inline: auto; }
 .hero__benefits {
   display: flex; flex-wrap: wrap; justify-content: center; column-gap: 0.35rem; row-gap: 0.2rem;
   margin: 0.75rem auto 0; font-size: 1.05rem; font-weight: 600; color: #f2f6ef;
@@ -301,9 +304,12 @@ p:last-child { margin-bottom: 0; }
 }
 .hero__avatar:last-child { margin-right: 0; }
 .hero__avatar--photo { object-fit: cover; background: #fff; padding: 0; }
-.hero__pill-col { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.25; }
+.hero__pill-col { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.25; min-width: 0; }
 .hero__pill-stars { color: var(--c-star); font-size: 0.88rem; letter-spacing: 0.1em; }
-.hero__pill-text { font-size: 0.92rem; font-weight: 600; white-space: nowrap; }
+/* No nowrap: Android's OS font scaling multiplies web text, and a nowrap
+   line overflows the capsule onto the avatars (seen on-device). Letting
+   the text wrap keeps the pill intact at any accessibility font scale. */
+.hero__pill-text { font-size: 0.92rem; font-weight: 600; text-wrap: balance; }
 .hero__pill-g { flex: none; width: 20px; height: 20px; }
 .hero--photo .hero__img {
   position: absolute; inset: 0; z-index: 0;
@@ -355,6 +361,14 @@ p:last-child { margin-bottom: 0; }
 .hero__cta { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 2.25rem; max-width: 24rem; margin-inline: auto; }
 .hero .btn--outline { color: #fff; }
 .hero .breadcrumbs, .hero .breadcrumbs a { color: var(--c-accent-soft); }
+
+/* ── Section headers: centred sitewide for consistency with the hero and
+   CTA bands. Direct-child selectors keep card titles and FAQ items
+   left-aligned with their own prose. ── */
+.section .container > h2,
+.section .container > .eyebrow,
+.section .split > div > h2,
+.intro-split__text > h2 { text-align: center; }
 
 /* ── Cards ── */
 .card {
@@ -489,7 +503,7 @@ p:last-child { margin-bottom: 0; }
   .btn { width: auto; }
   .sticky-call { display: none; }
   .hero { padding-block: 4.75rem 5.25rem; }
-  .hero__cta { flex-direction: row; }
+  .hero__cta { flex-direction: row; justify-content: center; }
   .grid--2, .grid--3, .grid--4 { grid-template-columns: repeat(2, 1fr); }
   .site-footer__grid { grid-template-columns: repeat(2, 1fr); }
 
