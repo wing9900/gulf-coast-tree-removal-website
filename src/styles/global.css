@@ -101,7 +101,10 @@ address { font-style: normal; }
 
 h1, h2, h3 { font-family: var(--font-display); line-height: 1.04; margin: 0 0 0.5em; color: var(--c-ink); font-weight: 700; }
 h1 { font-size: var(--fs-h1); letter-spacing: 0.002em; text-wrap: balance; }
-h2 { font-size: var(--fs-h2); letter-spacing: 0.004em; text-wrap: balance; }
+/* Left-aligned headings fill their first line; `pretty` only guards
+   against a lone orphan word on the last line (falls back to normal
+   wrapping where unsupported). Centred headings re-balance below. */
+h2 { font-size: var(--fs-h2); letter-spacing: 0.004em; text-wrap: pretty; }
 h3 { font-size: var(--fs-h3); letter-spacing: 0.006em; }
 p  { margin: 0 0 1em; }
 p:last-child { margin-bottom: 0; }
@@ -442,6 +445,14 @@ html:has(.lightbox:popover-open) body { overflow: hidden; touch-action: none; }
 .page-home .section .split > div > h2,
 .page-home .intro-split__text > h2,
 .reviews-section > .container > h2 { text-align: center; }
+/* Centred headings keep balanced lines (symmetric lengths are what
+   makes a centred wrap look intentional); left-aligned H2s use the
+   sitewide `pretty` and fill the line. */
+.page-home .section .container > h2,
+.page-home .section .split > div > h2,
+.page-home .intro-split__text > h2,
+.reviews-section > .container > h2,
+.cta-band h2 { text-wrap: balance; }
 
 /* ── Cards ── */
 .card {
