@@ -9,14 +9,7 @@
 import { getCollection } from 'astro:content';
 import { business as b, telHref } from '../config/business';
 
-const locations = await getCollection('locations');
-const hasAreas = locations.length > 0;
-// Town pages feed the Areas We Serve dropdown. Pasadena (the home city)
-// is prepended manually and points at the homepage — the homepage IS the
-// Pasadena page (Rule 13), so it never gets a /locations/ duplicate.
-const towns = locations
-  .filter((loc) => loc.data.kind === 'town')
-  .sort((a, z) => a.data.order - z.data.order);
+const hasAreas = (await getCollection('locations')).length > 0;
 ---
 
 <header class="site-header">
@@ -43,19 +36,7 @@ const towns = locations
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/services/">Services</a></li>
-          {hasAreas && (
-            <li class={towns.length > 0 ? 'has-sub' : undefined}>
-              <a href="/locations/">Areas We Serve</a>
-              {towns.length > 0 && (
-                <ul class="sub-nav" aria-label="Service areas">
-                  <li><a href="/">Pasadena, TX</a></li>
-                  {towns.map((t) => (
-                    <li><a href={`/locations/${t.id}/`}>{t.data.shortName ?? t.data.title}, TX</a></li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          )}
+          {hasAreas && <li><a href="/locations/">Areas We Serve</a></li>}
           <li><a href="/projects/">Recent Work</a></li>
           <li><a href="/testimonials/">Reviews</a></li>
           <li><a href="/about/">About</a></li>

@@ -54,10 +54,7 @@ src/components/
   Header.astro               Brand · Menu (mobile) · full number + Free Estimate (desktop) ·
                              CSS-only checkbox nav (zero JS, links always in DOM).
                              "Areas We Serve" item AUTO-APPEARS when location pages
-                             exist, with a CSS-only town dropdown (hover/focus on
-                             desktop, fully expanded in the mobile overlay; the
-                             Pasadena entry links to the homepage, which IS the
-                             home-city page). Sticky at all sizes; mobile nav is a right-aligned
+                             exist. Sticky at all sizes; mobile nav is a right-aligned
                              overlay dropdown under the Menu button with tap-outside
                              scrim close + glyph flip — all CSS-only, zero JS.
   Footer.astro               NAP + hours from config, quick links.

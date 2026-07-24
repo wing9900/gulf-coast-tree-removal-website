@@ -205,10 +205,6 @@ p:last-child { margin-bottom: 0; }
   background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius);
   box-shadow: 0 14px 34px rgb(13 42 27 / 0.2);
   padding: 0.35rem 0.9rem;
-  /* Areas sub-list makes the menu tall: cap to the viewport and scroll */
-  max-height: calc(100vh - 5.5rem);
-  max-height: calc(100dvh - 5.5rem);
-  overflow-y: auto;
 }
 .nav-toggle:checked ~ .site-nav { display: block; }
 .nav-scrim { display: none; }
@@ -224,14 +220,6 @@ p:last-child { margin-bottom: 0; }
   padding-inline: 0.25rem; text-decoration: none; color: var(--c-ink); font-weight: 600;
 }
 .site-nav a:hover { color: var(--c-primary); }
-
-/* Areas We Serve sub-menu — CSS-only, zero JS, links always in the DOM.
-   Mobile: rendered fully expanded (indented) inside the overlay menu, so
-   nothing is hidden behind a second toggle. Desktop (≥48rem): a
-   hover/keyboard-focus dropdown under the nav item. */
-.sub-nav { list-style: none; margin: 0; padding: 0 0 0.3rem 1rem; }
-.site-nav .sub-nav li + li { border-top: 0; }
-.site-nav .sub-nav a { font-weight: 500; }
 
 /* ── Hero (static — no sliders/carousels, Rules 21/24) ── */
 .hero {
@@ -664,25 +652,6 @@ html:has(.lightbox:popover-open) body { overflow: hidden; touch-action: none; }
   .site-nav ul { display: flex; gap: 1.4rem; padding: 0; }
   .site-nav a { min-height: 0; padding: 0; }
   .site-header__bar { flex-wrap: nowrap; }
-
-  /* Areas dropdown: hidden until the nav item is hovered or holds
-     keyboard focus (:focus-within keeps it open while tabbing through
-     the town links). display:none content stays in the DOM for crawlers. */
-  .has-sub { position: relative; }
-  .has-sub > a::after { content: " ▾"; font-size: 0.72em; }
-  .site-nav .sub-nav {
-    display: none;
-    position: absolute; top: calc(100% + 0.6rem); left: 50%; transform: translateX(-50%);
-    z-index: 70; min-width: 14rem;
-    background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius);
-    box-shadow: 0 14px 34px rgb(13 42 27 / 0.2);
-    padding: 0.35rem 0.9rem;
-  }
-  /* invisible bridge so the pointer can travel from link to dropdown */
-  .site-nav .sub-nav::before { content: ""; position: absolute; top: -0.7rem; left: 0; right: 0; height: 0.7rem; }
-  .has-sub:hover .sub-nav, .has-sub:focus-within .sub-nav { display: block; }
-  .site-nav .sub-nav li + li { border-top: 1px solid var(--c-line); }
-  .site-nav .sub-nav a { display: flex; align-items: center; min-height: var(--tap-min); padding-inline: 0.25rem; white-space: nowrap; }
 }
 
 /* ════════════════════════════════════════════════════════════════════
