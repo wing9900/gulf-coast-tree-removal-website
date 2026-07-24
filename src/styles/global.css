@@ -192,7 +192,13 @@ p:last-child { margin-bottom: 0; }
 .site-header__phone:hover { filter: brightness(1.05); color: var(--c-accent-ink); }
 
 /* CSS-only mobile nav (checkbox toggle — zero JS; links always in DOM) */
-.nav-toggle { position: absolute; opacity: 0; }
+/* Fixed 1px at the viewport corner, not absolute in the sticky header:
+   iOS Safari scrolls to a focused control's DOCUMENT-FLOW position, so
+   tapping the Menu label while scrolled down yanked the page toward the
+   top. A fixed element is always "in view", so no browser scrolls to
+   focus it. pointer-events off so the invisible box can't eat taps
+   (it used to sit over the logo); the label still toggles it. */
+.nav-toggle { position: fixed; top: 0; left: 0; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 .nav-toggle-label {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
   min-width: var(--tap-min); min-height: var(--tap-min);
