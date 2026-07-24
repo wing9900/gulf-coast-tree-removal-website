@@ -45,7 +45,9 @@ const description = `Towns and neighborhoods across the ${cityState} region serv
         <div class="grid grid--3">
           {locations.map((loc) => (
             <div class="card card--link">
-              <h2 class="card-title">{loc.data.title}</h2>
+              {/* Town name only — the full "[Category] in [Town]" keyword
+                  lives on the town page itself (title/H1/schema). */}
+              <h2 class="card-title">{loc.data.shortName ? `${loc.data.shortName}, ${b.address.stateAbbr}` : loc.data.title}</h2>
               <p><a href={`/locations/${loc.id}/`}>Service details for {loc.data.shortName ?? loc.data.title}</a></p>
             </div>
           ))}
