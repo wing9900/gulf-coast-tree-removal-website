@@ -36,7 +36,18 @@ export const business = {
   // Every town that gets a town page MUST also be listed here — this
   // feeds areaServed in LocalBusiness + Service schema, which is what
   // Google and AI assistants read to decide if you serve a searcher's town.
-  serviceAreas: ['Pasadena', 'Deer Park', 'La Porte', 'South Houston'], // confirm with Robert
+  serviceAreas: [
+    'Pasadena',
+    'Baytown',
+    'League City',
+    'Pearland',
+    'Houston',
+    'Deer Park',
+    'South Houston',
+    'Clear Lake',
+    'Clear Lake Shores',
+    'La Porte',
+  ],
 
   // ── Hours (match GBP exactly — Rule 7: open-at-time-of-search is top-5) ──
   // days: schema.org day names. 24/7 answering (AI receptionist)? Extend
