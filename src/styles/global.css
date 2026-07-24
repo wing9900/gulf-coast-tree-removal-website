@@ -497,9 +497,10 @@ html:has(.lightbox:popover-open) body { overflow: hidden; touch-action: none; }
    Links AFTER the first paragraph (the services-hub "Includes" list)
    are positioned later in the DOM, so they paint above the overlay and
    stay individually tappable. */
-.card--flow { position: relative; }
-.card--flow a { -webkit-tap-highlight-color: transparent; }
-.card--flow > p:first-of-type > a::after { content: ''; position: absolute; inset: 0; }
+.card--flow, .card--link { position: relative; }
+.card--flow a, .card--link a { -webkit-tap-highlight-color: transparent; }
+.card--flow > p:first-of-type > a::after,
+.card--link > p:first-of-type > a::after { content: ''; position: absolute; inset: 0; }
 .card--flow > p:not(:first-of-type) > a { position: relative; }
 
 /* ── FAQ — ALWAYS fully expanded (Rule 24: no accordions, ever) ── */
