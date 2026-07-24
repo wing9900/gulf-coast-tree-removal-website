@@ -24,7 +24,7 @@ const towns = (await getCollection('locations', ({ data }) => data.kind === 'tow
           <><a href={`/locations/${t.id}/`}>{t.data.shortName ?? t.data.title}</a>{i < towns.length - 1 ? ' · ' : ''}</>
         ))}
       </p>
-      <p>
+      <p class="areas-more">
         <a href="/locations/">See tree service details for each area</a>.
       </p>
     </div>

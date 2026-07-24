@@ -620,6 +620,9 @@ html:has(.lightbox:popover-open) body { overflow: hidden; touch-action: none; }
 
 /* ── Service areas strip ── */
 .areas-links { font-size: 1.08rem; line-height: 2.1; font-weight: 600; }
+/* Hub link line under the town list: centred, opted out of the
+   reading-measure cap so the centring is exact. */
+.areas-more { text-align: center; max-width: none; }
 
 /* ── Floating mobile call pill (mobile only; header owns the number ≥48rem) ── */
 .sticky-call {
