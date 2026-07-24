@@ -503,6 +503,36 @@ html:has(.lightbox:popover-open) body { overflow: hidden; touch-action: none; }
 
 .card-title { font-size: var(--fs-card-h2); margin-bottom: 0.45em; } /* semantic H2, visually sub-H1 */
 .card h3 { margin-bottom: 0.35em; }
+
+/* Why Choose Us icon tiles: every card leads with the same fixed sage
+   tile and a pine-stroke glyph so the four icons read as one set. */
+.why-icon {
+  display: flex; align-items: center; justify-content: center;
+  width: 4rem; height: 4rem; margin-bottom: 1rem;
+  background: var(--c-surface); border: 1px solid var(--c-line);
+  border-radius: var(--radius); color: var(--c-primary);
+}
+.why-icon svg { width: 2.4rem; height: 2.4rem; display: block; }
+
+/* Why Choose Us layout: 2x2 cards from tablet up. Four tall columns
+   made the 4-5 sentence paragraphs read as skinny text towers; two wide
+   columns restore a comfortable line length. Inside each card the icon
+   tile sits beside the TITLE as a compact header row, with the
+   paragraph running full card width below — distinct from the icon-less
+   border-left flow cards in the What We Do section further down.
+   Phones keep the icon-above-text stacking. */
+.why-grid { display: grid; gap: 1.1rem; }
+@media (min-width: 48rem) {
+  .why-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .why-grid > .card--why {
+    display: grid; grid-template-columns: auto 1fr;
+    column-gap: 0.9rem; row-gap: 0.85rem; align-items: center;
+  }
+  .card--why .why-icon { width: 3.25rem; height: 3.25rem; margin-bottom: 0; }
+  .card--why .why-icon svg { width: 2rem; height: 2rem; }
+  .card--why h3 { margin: 0; }
+  .card--why p { grid-column: 1 / -1; }
+}
 /* Card prose fills its card: the desktop `main p` 68ch reading cap is for
    open page text, not cards, where it left a dead right half. */
 .card p { max-width: none; }
@@ -534,7 +564,6 @@ html:has(.lightbox:popover-open) body { overflow: hidden; touch-action: none; }
 .faq-item { border-top: 1px solid var(--c-line); padding-block: 1.05rem; }
 .faq-item:last-of-type { border-bottom: 1px solid var(--c-line); }
 .faq-item h3 { margin-bottom: 0.35rem; }
-.faq-item h3::before { content: 'Q '; color: var(--c-accent); font-weight: 700; }
 
 /* ── Reviews ── */
 /* Section subtitle lines under the heading, centred (opt out of the
@@ -590,6 +619,7 @@ html:has(.lightbox:popover-open) body { overflow: hidden; touch-action: none; }
 
 /* ── Map + NAP ── */
 .map-embed { aspect-ratio: 4 / 3; width: 100%; border-radius: var(--radius); background: var(--c-surface); }
+.nap-heading { text-align: left !important; }
 .nap-block { line-height: 1.85; }
 .hours-list { list-style: none; padding: 0; margin: 0.6rem 0 0; max-width: 26rem; }
 .hours-list li { display: flex; justify-content: space-between; gap: 1rem; border-top: 1px dashed var(--c-line); padding-block: 0.35rem; font-size: var(--fs-small); }

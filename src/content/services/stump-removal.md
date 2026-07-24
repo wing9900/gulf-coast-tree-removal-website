@@ -2,7 +2,7 @@
 title: "Stump Removal"
 category: "stump-grinding"
 h1: "Stump Removal in Pasadena, TX — Root Ball and All, Ground Ready for What's Next"
-metaDescription: "Full stump removal in Pasadena, TX — root balls pulled for construction, replanting & resprouters like crepe myrtle. Insured crew, free written estimates."
+metaDescription: "Full stump removal in Pasadena, TX — root balls pulled for construction, replanting & resprouters like crepe myrtle. Insured crew, free estimates."
 categoryBlurb: "Sometimes grinding isn't enough — the whole root system has to go. Building over the spot, replanting in the same hole, or killing off a crepe myrtle that resprouts from any root left alive all call for full stump removal: the root ball excavated and hauled out, not just chewed below grade. One Pasadena job in our reviews covered exactly this — three crepe myrtles taken out root balls and all, leaving beds ready to replant."
 order: 1
 faqs:

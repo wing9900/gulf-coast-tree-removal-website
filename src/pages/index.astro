@@ -34,6 +34,44 @@ const title =
 const categories = (await getCollection('categories')).sort(
   (a, z) => a.data.order - z.data.order
 );
+
+// Why Choose Us stroke icons, inlined (zero external requests). All share
+// the 256 grid and a 16px stroke so they sit as one matched set.
+const whyIcons: Record<string, string> = {
+  leaf:
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none" aria-hidden="true">' +
+    '<g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16">' +
+    '<path d="M63.81,192.19c-47.89-79.81,16-159.62,151.64-151.64C223.43,176.23,143.62,240.08,63.81,192.19Z"/>' +
+    '<line x1="160" y1="96" x2="40" y2="216"/>' +
+    '</g></svg>',
+  book:
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none" aria-hidden="true">' +
+    '<g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16">' +
+    '<polyline points="176 32 176 128 143.99 104 112 128 112 32"/>' +
+    '<path d="M48,216a24,24,0,0,1,24-24H208V32H72A24,24,0,0,0,48,56Z"/>' +
+    '<polyline points="48 216 48 224 192 224"/>' +
+    '</g></svg>',
+  handshake:
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none" aria-hidden="true">' +
+    '<g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16">' +
+    '<polyline points="200 152 160 192 96 176 40 136"/>' +
+    '<polyline points="72.68 70.63 128 56 183.32 70.63"/>' +
+    '<path d="M34.37,60.42,8.85,111.48a8,8,0,0,0,3.57,10.73L40,136,72.68,70.63,45.11,56.85A8,8,0,0,0,34.37,60.42Z"/>' +
+    '<path d="M216,136l27.58-13.79a8,8,0,0,0,3.57-10.73L221.63,60.42a8,8,0,0,0-10.74-3.57L183.32,70.63Z"/>' +
+    '<path d="M184,72H144L98.34,116.29a8,8,0,0,0,1.38,12.42C117.23,139.9,141,139.13,160,120l40,32,16-16"/>' +
+    '<polyline points="124.06 216 82.34 205.57 56 186.75"/>' +
+    '</g></svg>',
+  crosshair:
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none" aria-hidden="true">' +
+    '<g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16">' +
+    '<line x1="128" y1="232" x2="128" y2="200"/>' +
+    '<circle cx="128" cy="128" r="88"/>' +
+    '<line x1="128" y1="24" x2="128" y2="56"/>' +
+    '<line x1="24" y1="128" x2="56" y2="128"/>' +
+    '<line x1="232" y1="128" x2="200" y2="128"/>' +
+    '<circle cx="128" cy="128" r="32"/>' +
+    '</g></svg>',
+};
 ---
 
 <BaseLayout title={title} description={b.seo.homepageMetaDescription}>
@@ -66,9 +104,10 @@ const categories = (await getCollection('categories')).sort(
     <div class="container">
       <p class="eyebrow">Why choose us</p>
       <h2>Why {b.address.city} Chooses {b.name}</h2>
-      <div class="grid grid--4">
+      <div class="why-grid">
         {hp.whyChooseUs.map((item) => (
-          <div class="card">
+          <div class="card card--why">
+            <span class="why-icon" set:html={whyIcons[item.icon]} />
             <h3>{item.title}</h3>
             <p>{item.text}</p>
           </div>

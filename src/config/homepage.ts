@@ -47,14 +47,30 @@ export const homepage = {
 
   // Why Choose Us (Rule 13 #6) — high on the page, never buried.
   // Static grid, no carousel (Rule 24). Specifics beat adjectives (Rule 22).
-  // Card themes are pulled from what real reviewers actually praise
-  // (punctuality, dealing with Robert directly, cleanup) plus the one
-  // technical differentiator competitors can't claim (ANSI A300 work).
+  // Each card carries an icon key rendered by index.astro as an inlined
+  // stroke icon framed in a matching tile. The ISA credential badge
+  // itself lives on the hero (hero.badge below) and the about page.
   whyChooseUs: [
-    { title: 'A Certified Arborist on Every Job', text: 'Robert Ebbecke holds ISA credential TX-5075A. You get a certified arborist deciding what comes down and what can be saved, not a guess from a guy with a chainsaw.' },
-    { title: 'You Deal With Robert, Start to Finish', text: 'The person who answers your call is the arborist who walks your property, writes your price, and runs the crew. Reviewers mention Robert by name because he is the one who shows up.' },
-    { title: 'Work Done to the ANSI A300 Standard', text: 'Every cut lands at the branch collar. No topping, no climbing spikes in a tree that stays, never more than a quarter of the live canopy in a season. The same written standard cities and utilities require.' },
-    { title: 'A Cleaner Yard Than We Found', text: 'Limbs chipped, wood hauled, sawdust raked, driveway blown off. Read the reviews and you will see the cleanup praised almost as often as the tree work itself.' },
+    {
+      icon: 'leaf',
+      title: 'On-Site, Not On-Call',
+      text: 'Anyone can buy a chainsaw, but it takes dedication to understand tree biology, structural integrity, and local Gulf Coast diseases. By having an ISA Certified Arborist on every job, we replace reckless cutting with science-based arboriculture. We accurately diagnose hidden decay, structural risks, and disease before a single cut is made. You get the peace of mind that comes from a credentialed professional determining the safest, most effective plan for your landscape and personally seeing it through.',
+    },
+    {
+      icon: 'book',
+      title: 'Standards, Not Guesswork',
+      text: "Your trees and your home are major investments, and we treat them that way. That's why we execute every job in accordance with ANSI A300 guidelines. By holding ourselves to this standard, we ensure safe, controlled removals and research-informed tree care. Whether we are dismantling a hazardous tree inches from your foundation or preserving a prized specimen, the work follows a written rulebook, not one crew's judgment in the moment.",
+    },
+    {
+      icon: 'handshake',
+      title: 'Transparent Pricing, Not Surprises',
+      text: 'The tree care industry is infamous for vague estimates, bait-and-switch tactics, and sudden upcharges once the work begins. We refuse to operate that way. We provide comprehensive, fully transparent quotes before a single chainsaw is started. Whether your project requires complex rigging, deep stump grinding, or massive debris haul-away, every detail is clearly outlined, matching the exact scope of work. The price you agree to is the exact price you pay: no hidden fees, no "unforeseen" costs, and absolutely no surprises on your final invoice.',
+    },
+    {
+      icon: 'crosshair',
+      title: 'Surgical Dismantling, Not Free-Falling Timber',
+      text: 'An amateur with a chainsaw lets gravity call the shots, resulting in crushed sprinkler heads, cracked concrete, and destroyed turf. We operate differently. Using friction devices and professional arborist rigging equipment, we control the descent of multi-ton logs with surgical precision. Instead of leaving that call to chance, we guide each piece to the ground exactly where it needs to go, keeping your pristine landscaping and expensive hardscaping untouched.',
+    },
   ],
 
   // Social-proof band (Rule 23): badges/credential names shown under the
@@ -85,15 +101,11 @@ export const homepage = {
   faqs: [
     {
       q: 'What does an estimate cost?',
-      a: 'Nothing. Call or text (281) 757-2938, describe the tree, and you get a free on-site estimate with a firm price before any work starts.',
+      a: 'Nothing. Call or text (281) 757-2938, describe the work you need done, and you get a free estimate with transparent pricing before any work starts.',
     },
     {
-      q: 'Do I have to pay anything up front?',
-      a: 'No. You pay when the job is complete and you are happy with the result. No deposits, no draws, no money down.',
-    },
-    {
-      q: 'Is stump grinding included with a tree removal?',
-      a: 'Yes. Every removal includes grinding the stump at no added cost, so you get your yard back instead of a stump to mow around.',
+      q: 'Are you licensed and insured for tree work in Texas?',
+      a: 'Yes. Every job is performed by an ISA Certified Arborist carrying full liability insurance. We can provide proof of coverage before any work starts.',
     },
   ],
 } as const;
