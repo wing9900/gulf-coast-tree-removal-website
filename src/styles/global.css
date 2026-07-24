@@ -204,10 +204,15 @@ p:last-child { margin-bottom: 0; }
 .site-nav {
   display: none;
   position: absolute; top: calc(100% + 0.3rem); right: 1.25rem; z-index: 70;
-  min-width: 15rem; max-width: calc(100vw - 2.5rem);
+  min-width: 16.5rem; max-width: calc(100vw - 2.5rem);
   background: #fff; border: 1px solid var(--c-line); border-radius: var(--radius);
   box-shadow: 0 14px 34px rgb(13 42 27 / 0.2);
   padding: 0.35rem 0.9rem;
+  /* links + CTA buttons can outgrow short phones: cap to the viewport
+     and scroll inside the card (reset at >=48rem where nav is inline) */
+  max-height: calc(100vh - 5.5rem);
+  max-height: calc(100dvh - 5.5rem);
+  overflow-y: auto;
 }
 .nav-toggle:checked ~ .site-nav { display: block; }
 .nav-scrim { display: none; }
@@ -223,6 +228,14 @@ p:last-child { margin-bottom: 0; }
   padding-inline: 0.25rem; text-decoration: none; color: var(--c-ink); font-weight: 600;
 }
 .site-nav a:hover { color: var(--c-primary); }
+
+/* Menu CTAs (phone overlay only; hidden ≥48rem). Scoped two-class
+   selectors out-rank the `.site-nav a` link styling above so the
+   signage buttons keep their own colors, padding, and hover. */
+.site-nav__cta { display: grid; gap: 0.65rem; margin-top: 0.4rem; padding: 0.9rem 0.1rem 0.75rem; border-top: 1px solid var(--c-line); }
+.site-nav__cta .btn { justify-content: center; font-size: 1.15rem; padding: 0.75rem 0.9rem; }
+.site-nav__cta .btn--primary, .site-nav__cta .btn--primary:hover { color: var(--c-accent-ink); }
+.site-nav__cta .btn--outline, .site-nav__cta .btn--outline:hover { color: #fff; }
 
 /* ── Hero (static — no sliders/carousels, Rules 21/24) ── */
 .hero {
@@ -666,7 +679,8 @@ html:has(.lightbox:popover-open) body { overflow: hidden; touch-action: none; }
      untouched so the mobile checkbox nav is unaffected) arranges the
      bar as: brand left · nav centred · phone + estimate right. */
   .nav-toggle-label { display: none; }
-  .site-nav { display: block !important; position: static; min-width: 0; max-width: none; background: transparent; border: 0; box-shadow: none; padding: 0; order: 1; margin-inline: auto; }
+  .site-nav { display: block !important; position: static; min-width: 0; max-width: none; max-height: none; overflow: visible; background: transparent; border: 0; box-shadow: none; padding: 0; order: 1; margin-inline: auto; }
+  .site-nav__cta { display: none; }
   .site-header__actions { order: 2; }
   .site-header__estimate { order: 2; } /* estimate button outermost right */
   .site-nav li + li { border-top: 0; }
