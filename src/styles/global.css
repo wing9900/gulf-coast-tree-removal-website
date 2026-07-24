@@ -804,7 +804,12 @@ html:has(.lightbox:popover-open) body { overflow: hidden; touch-action: none; }
   /* Proof band scale-up: bigger avatars, mark, badges so the wide dark
      band reads populated instead of sparse (base sizes live earlier in
      the cascade; these later rules win at >=64rem). */
-  .site-footer__grid { grid-template-columns: 2fr 1fr 1fr; }
+  /* Footer: columns size to their content and spread evenly, so the
+     brand block, Hours, and Quick Links read as three tidy groups
+     instead of two narrow strips floating far right of a wide gap.
+     Hours rows get a fixed width so day and time stay visually paired. */
+  .site-footer__grid { grid-template-columns: auto auto auto; justify-content: space-between; column-gap: 4rem; }
+  .site-footer .hours-list { width: 15rem; }
   .split { grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
 }
 
