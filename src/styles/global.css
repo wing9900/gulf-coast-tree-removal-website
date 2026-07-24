@@ -711,8 +711,12 @@ html:has(.lightbox:popover-open) body { overflow: hidden; touch-action: none; }
      capped paragraphs sit under its centred H2s. */
   main p { max-width: 68ch; }
   main.page-home p { margin-inline: auto; }
-  /* FAQ answers stay left-aligned with their questions. */
-  .faq-item p { margin-inline: 0; }
+  /* FAQ answers stay left-aligned with their questions — the extra
+     main.page-home selector keeps this exception winning against the
+     homepage's centred-column rule above (it lost on specificity when
+     page-home scoping was introduced, which centred homepage answers
+     under left-pinned questions). */
+  .faq-item p, main.page-home .faq-item p { margin-inline: 0; }
   .eyebrow { font-size: 1.05rem; }
   .hero h1 { font-size: clamp(2.5rem, 1rem + 3.2vw, 4.75rem); }  /* ~49px@1024, ~72px@1760, 76px cap */
   h2 { font-size: 2.125rem; }                    /* always < H1 (min 2.86rem at 1024px) */
