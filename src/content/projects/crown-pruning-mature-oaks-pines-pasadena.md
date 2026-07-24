@@ -1,6 +1,6 @@
 ---
 title: "Crown Pruning in Mature Oaks and Pines"
-service: "tree-trimming"
+service: "tree-pruning"
 description: "Deadwood removal and crown cleaning in big, established trees. This is climbing work that protects the tree instead of topping it. Roped climbers made proper cuts high in the canopy over homes and fence lines around Pasadena."
 order: 5
 ---

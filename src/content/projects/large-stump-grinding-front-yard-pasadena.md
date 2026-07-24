@@ -1,6 +1,6 @@
 ---
 title: "Grinding Out a Massive Front-Yard Stump"
-service: "stump-grinding"
+service: "stump-removal"
 description: "A stump this size with surface roots running across the yard takes real equipment, not a rental. The tracked Bandit grinder worked the stump and root flare down below grade so the Pasadena homeowner could re-sod and reclaim the lawn."
 order: 4
 ---

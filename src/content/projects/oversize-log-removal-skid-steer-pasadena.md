@@ -1,6 +1,6 @@
 ---
 title: "Bucking and Hauling Oversize Logs with the Skid Steer"
-service: "tree-removal"
+service: "debris-removal"
 description: "When trunks are too big to roll, they get bucked into sections and carried out with the grapple. The Kubota SVL75-3 moved logs most crews would have to leave behind, and the yard was left clean: no ruts, nothing for the homeowner to deal with."
 order: 6
 ---

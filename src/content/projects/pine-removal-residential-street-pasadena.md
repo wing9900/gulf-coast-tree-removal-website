@@ -1,6 +1,6 @@
 ---
 title: "Full Pine Removal on a Residential Street in Pasadena"
-service: "tree-removal"
+service: "large-tree-removal"
 description: "A tall pine came down in sections over a Pasadena front yard: bucket truck for the canopy, ground crew bucking the trunk into logs, every limb chipped on site. Cones and signage kept the street open and safe the whole time."
 order: 1
 ---

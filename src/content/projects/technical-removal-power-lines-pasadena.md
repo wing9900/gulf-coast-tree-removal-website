@@ -1,6 +1,6 @@
 ---
 title: "Technical Removal of a Storm-Damaged Hardwood Near Power Lines"
-service: "tree-removal"
+service: "hazardous-tree-removal"
 description: "This one had no room for shortcuts: a large hardwood leaning toward service lines in Pasadena. A climber rigged and lowered the tree piece by piece so nothing touched the wires or any structures below."
 order: 2
 ---

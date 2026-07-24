@@ -24,6 +24,14 @@ const rendered = await Promise.all(
   projects.map(async (project) => {
     const { Content } = await render(project);
     const relatedService = await getEntry('services', project.data.service);
+    // The editorial link to the matching service page is REQUIRED
+    // (Rule 16) — fail the build instead of silently shipping without it.
+    if (!relatedService) {
+      throw new Error(
+        `Project "${project.id}" has service: "${project.data.service}", which matches no file in ` +
+        `src/content/services/. Use the service page's filename slug (not a category slug).`
+      );
+    }
     return { project, Content, relatedService };
   })
 );
@@ -54,15 +62,13 @@ const description = `Real, recent ${b.primaryCategory.toLowerCase()} projects co
             <h2 class="card-title">{project.data.title}</h2>
             <p>{project.data.description}</p>
             <Content />
-            {relatedService && (
-              <p>
-                Need something similar? See our{' '}
-                <a href={`/services/${relatedService.data.category}/${relatedService.id}/`}>
-                  {relatedService.data.title.toLowerCase()} in {b.address.city}
-                </a>{' '}
-                page for what's included and what drives the price.
-              </p>
-            )}
+            <p>
+              Need something similar? See our{' '}
+              <a href={`/services/${relatedService.data.category}/${relatedService.id}/`}>
+                {relatedService.data.title.toLowerCase()} in {b.address.city}
+              </a>{' '}
+              page for what's included and what drives the price.
+            </p>
           </article>
         ))
       ) : (
