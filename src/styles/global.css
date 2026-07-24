@@ -432,13 +432,16 @@ html:has(.lightbox:popover-open) body { overflow: hidden; touch-action: none; }
 .hero .btn--outline { color: #fff; }
 .hero .breadcrumbs, .hero .breadcrumbs a { color: var(--c-accent-soft); }
 
-/* ── Section headers: centred sitewide for consistency with the hero and
-   CTA bands. Direct-child selectors keep card titles and FAQ items
-   left-aligned with their own prose. ── */
-.section .container > h2,
-.section .container > .eyebrow,
-.section .split > div > h2,
-.intro-split__text > h2 { text-align: center; }
+/* ── Section headers: left-aligned sitewide (owner preference, July 2026).
+   Two exceptions keep their centred composition: the HOMEPAGE (.page-home
+   scopes its landing-page layout) and the reviews band (a centred
+   social-proof block on every page it appears). Heroes are centred
+   separately via .hero rules and are unaffected. ── */
+.page-home .section .container > h2,
+.page-home .section .container > .eyebrow,
+.page-home .section .split > div > h2,
+.page-home .intro-split__text > h2,
+.reviews-section > .container > h2 { text-align: center; }
 
 /* ── Cards ── */
 .card {
@@ -452,8 +455,9 @@ html:has(.lightbox:popover-open) body { overflow: hidden; touch-action: none; }
    POINTER (mouse/trackpad): :hover, gated so touch devices never inherit
    Safari's "sticky hover", which latches on tap and persists until you tap
    elsewhere: that was the inconsistent colour change on iPhone.
-   TOUCH: no press state by design. These cards are plain <article> blocks
-   with no link inside, so there is nothing meaningful for a tap to do. */
+   TOUCH: no press state by design. The Why Choose Us cards are plain
+   blocks with nothing to tap; the flow cards are whole-card links whose
+   tap-highlight is disabled below, so neither wants a flash. */
 @media (hover: hover) and (pointer: fine) {
   .card:hover { transform: translateY(-3px); border-top-color: var(--c-accent); box-shadow: 0 3px 6px rgb(13 42 27 / 0.06), 0 14px 30px rgb(13 42 27 / 0.12); }
   .card--flow:hover { border-top-color: var(--c-line); border-left-color: var(--c-accent); transform: none; }
@@ -473,13 +477,19 @@ html:has(.lightbox:popover-open) body { overflow: hidden; touch-action: none; }
   .cat-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
   .cat-grid > :last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
-/* Whole card clickable (zero JS): each card holds exactly one link, so a
-   stretched ::after overlay extends its tap target to the full card.
+/* Whole card clickable (zero JS) — every flow card sitewide: homepage
+   category grid, services hub, and category-page service blocks. The
+   card's FIRST paragraph holds its primary editorial link, whose
+   stretched ::after overlay extends the tap target to the full card.
    Tap-highlight off: the overlay makes the whole card the link's hit
-   area, so phones would flash the OS highlight over it on every tap. */
-.cat-grid .card { position: relative; }
-.cat-grid .card a { -webkit-tap-highlight-color: transparent; }
-.cat-grid .card a::after { content: ''; position: absolute; inset: 0; }
+   area, so phones would flash the OS highlight over it on every tap.
+   Links AFTER the first paragraph (the services-hub "Includes" list)
+   are positioned later in the DOM, so they paint above the overlay and
+   stay individually tappable. */
+.card--flow { position: relative; }
+.card--flow a { -webkit-tap-highlight-color: transparent; }
+.card--flow > p:first-of-type > a::after { content: ''; position: absolute; inset: 0; }
+.card--flow > p:not(:first-of-type) > a { position: relative; }
 
 /* ── FAQ — ALWAYS fully expanded (Rule 24: no accordions, ever) ── */
 .faq-item { border-top: 1px solid var(--c-line); padding-block: 1.05rem; }
@@ -662,9 +672,11 @@ html:has(.lightbox:popover-open) body { overflow: hidden; touch-action: none; }
      matching this repo's existing breakpoint convention) ── */
   :root { --space-section: 6.5rem; }            /* 104px section rhythm */
   .container { max-width: 1240px; padding-inline: 32px; }
-  /* Reading measure: cap AND centre the column, so capped paragraphs sit
-     under the centred H2s instead of pinned to the container's left edge. */
-  main p { max-width: 68ch; margin-inline: auto; }
+  /* Reading measure: cap the column at 68ch, left-pinned (owner
+     preference, July 2026). The homepage keeps its centred column so
+     capped paragraphs sit under its centred H2s. */
+  main p { max-width: 68ch; }
+  main.page-home p { margin-inline: auto; }
   /* FAQ answers stay left-aligned with their questions. */
   .faq-item p { margin-inline: 0; }
   .eyebrow { font-size: 1.05rem; }

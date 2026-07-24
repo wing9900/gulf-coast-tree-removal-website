@@ -51,7 +51,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <body id="top">
     <a class="skip-link" href="#main">Skip to content</a>
     <Header />
-    <main id="main">
+    {/* page-home scopes the homepage-only centred composition; every
+        other page reads left-aligned (heroes stay centred via .hero). */}
+    <main id="main" class={Astro.url.pathname === '/' ? 'page-home' : undefined}>
       <slot />
     </main>
     <Footer />
